@@ -1,5 +1,5 @@
 
-- Will be using `R`, using the following two libraries
+- Will be using the following two libraries in `R`
 ```R
 library(MASS)
 library(pracma)
@@ -22,8 +22,8 @@ library(pracma)
 ## 3.4 Hidden Markov Chain
 
 # 4. Signular Value Decomposition
-#4.1 Principal component analysis
-#4.2 Revisit the relationship among the four fundamental subspaces
+# 4.1 Principal component analysis
+# 4.2 Revisit the relationship among the four fundamental subspaces
 
 # 5. Discussion of different types of basis
 ## 5.1 Polynomial basis
