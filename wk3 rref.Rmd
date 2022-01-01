@@ -1,0 +1,107 @@
+---
+title: "Linear Algebra: wk3 rref"
+author: "Bill Chung"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(far)
+library(MASS)
+library(pracma)
+```
+
+# Concepts
+
+## Space, subspace
+
+- Domain, codomain (Range, C($mathbb{A}$))
+
+## Domain, codomain, Range
+
+- You will see the following notation from time to time
+
+$$T: R^n \rightarrow R^m $$
+
+- the above notation is saying that `matrix T will be used to multiply vector with size of n and the resulting vector will have size m`
+
+- And we will get into the details later.
+
+- Vector resize within a space which consist of so many subspaces.
+
+- When you put vectors into a matrix, you get two space, I call them `input` and `output space`.  Input space can be divided into `row space` and `nullspace`, and `output space` can be divided into `column space` and `left null space`
+
+- Think of domain as `row space` and `codomain` as `output space` and `range` as `column space`
+
+## Rank nullity theorem
+
+If $\mathbb{A}$ has $n$ columns, then $\text{Rank}(\mathbb{A}) + \text{dim Nul}(\mathbb{A}) = n$
+
+- see page 156 for the invertible matrix theorem (continued)
+
+## Invertible Linear Transformation
+
+- A linear transformation $\mathbb{T}: R^n \rightarrow R^n$ is said to be `invertible` if there exists a funciton $\mathbb{S}: R^n \rightarrow R^n$ such that 
+
+$$\begin{aligned}
+\mathbb{S}(\mathbb{T}(\vec{x}))= \vec{x} \text{ for all }\vec{x}\text{ in } R^n \\
+\mathbb{T}(\mathbb{S}(\vec{x}))= \vec{x} \text{ for all }\vec{x}\text{ in } R^n \\
+\end{aligned}$$
+<br><br>
+where dim($\mathbb{A}$) = n by n, $\vec{x}, \vec{b} \in R^n$
+- $\mathbb{A}$ is the standard matrix for $\mathbb{T}$
+$$\mathbb{A}\vec{x}=\vec{b}$$
+
+- $\mathbb{A}^{-1}$ is the standard matrix for $\mathbb{S}$
+$$\mathbb{A}^{-1}\vec{b}=\vec{x}$$
+
+```{r}
+r1 <- c(0,1,-4)
+r2 <- c(2,-3,2)
+r3 <- c(5,-8,9)
+A <- rbind(r1,r2,r3)
+print(rref(A))
+```
+- Above matrix is invertible matrix based on `rref()`
+- Inverse transformation `undo` the transformation
+
+```{r}
+x <- c(3,6,9)
+
+#to use the same notation
+T <- A
+b<- T%*%x
+print("Before the transformation")
+print(x)
+print("After the transformaiton")
+print(T%*%x)
+```
+
+## When $\mathbb{A}$ is not a square matrix
+
+- With respect to $\mathbb{A}$, $\vec{b}$ is in your `range` and $\vec{x}$ is in `domain`.
+
+- $\mathbb{A}$ transform vectors in domain to range.
+- $\mathbb{A}^{-1}$ can transform values in range back to domain, when the $\mathbb{A}$ involved 1-1 transformation.
+
+```{r}
+#chapter 1.1 example 3
+
+r1 <- c(0,3,-6,6,4,-5)
+r2 <- c(3,-7,8,-5,8,9)
+r3 <- c(3,-9,12,-9,6,15)
+
+A <- rbind(r1,r2,r3)
+
+rref(A)
+```
+
+## Exercise.  
+
+- Get 5 matrices from class 
+- Given a matrix and a vector
+  - Show different ways of spanning the given vector

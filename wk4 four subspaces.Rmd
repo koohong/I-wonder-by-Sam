@@ -1,0 +1,144 @@
+---
+title: 'Linear Algebra: wk4 Four Subspaces'
+author: "Bill Chung"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+library(far)
+library(MASS)
+library(pracma)
+```
+
+# Fundamental four subspaces of Matrix
+
+- $R(\mathbb{A}), N(\mathbb{A}), C(\mathbb{A}), N(\mathbb{A}^T)$
+
+## Exercise.  
+
+- Get 5 matrices from class 
+- Given a matrix and a vector, 
+
+(1) find out where the vector lives
+  - Space and subspace
+  
+(2) basis of the subspace
+(3) Provide a vector that is not in the span of these two subspaces
+
+# Finding a basis of a subspace
+
+## Column space basis
+
+### use rref($\mathbb{A}$)
+
+```{r}
+A = matrix(c(-3,6,-1,1,-7,1,-2,2,3,-1,2,-4,5,8,-4),nrow=3,ncol=5,byrow=TRUE)
+print(A)
+rref(A)
+```
+
+### use orth()
+
+```{r}
+C_A = orth(A)
+C_A
+```
+
+## Left Nullspace($\mathbb{A}^T$)
+
+```{r}
+N_AT <- null(t(A))
+N_AT
+```
+
+## Basis for output space
+
+```{r}
+OUT <- cbind(C_A, N_AT)
+rref(OUT)
+```
+
+## Row space basis 
+
+### Using transformation
+
+
+### using orth()
+
+```{r}
+C_AT <- orth(t(A))
+C_AT
+```
+
+## Nullspace basis
+
+- Suppose $T(\vec{x}) = A\vec{x}$, then the ```kernel``` or null space of such T can be found as below.
+
+### using nullspace()
+
+```{r}
+N_A <- nullspace(A)
+N_A
+```
+
+## Basis spanning the input space
+
+```{r}
+IN <- cbind(C_AT, N_A)
+IN
+```
+
+
+- Suppose we have $\vec{H}=[a-3b,b-a,a,b]^T$, this can be written as linear combination of two vectors $a\vec{v}_1$ and $b\vec{v}_2$ where $\vec{v}_1 = [1,-1,1,0]$ and $\vec{v}_2 = [-3,1,0,1]$.
+
+- This is very useful technique of expressing a subspace of $\vec{H}$ as the linear combination of some small collectoin of vectors.
+
+- Subspace of $\vec{H} \in$ Span{$\vec{v}_1, \vec{v}_2$}
+
+## How to find the basis of null space
+
+- Step 1: Given $\mathbb{A}$, find its `rref`
+- Step 2: Solve for $\vec{x}$ in $\mathbb{A}\vec{x}=\vec{0}$
+- Step 3: express $\vec{x}$ as linear combination of smaller vectors.
+- Step 4: identify basis spanning the null space
+
+```{r}
+r1 <- c(-3,6,-1,1,-7)
+r2 <- c(1,-2,2,3,-1)
+r3 <- c(2,-4,5,8,-4)
+
+A <- rbind(r1,r2,r3)
+
+rref(A)
+```
+
+```{r}
+n1 <- c(2,1,0,0,0)
+n2 <- c(1,0,-2,1,0)
+n3 <- c(-3,0,2,0,1)
+
+#########################################
+# Any vector in the null space with A
+#########################################
+
+print(A%*%n1)
+print(A%*%(n1+n2+n3))
+print(round(A%*%(100*n1+0.1*n2-305*n3),3))
+```
+
+# Concept check questions
+
+- What is the relationship between $C(A)$ and $N(A^T)$?
+- What is the relationship between $R(A)$ and $N(A)$?
+- What is the relationship between $C(A)$ and $R(A)$?
+- What is the relationship between $N(A)$ and $N(A^T)$?
+- If the basis spanning $C(A)$ are given, can you find out the basis
+spanning $N(A^T)$?
+- If the basis spanning $R(A)$ are given, can you find out the basis
+spanning $N(A^T)$?
+

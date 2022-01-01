@@ -1,0 +1,548 @@
+---
+title: "wk7"
+author: "Bill Chung"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=TRUE)
+```
+
+
+```{r include=FALSE}
+library(far)
+library(MASS)
+library(pracma)
+```
+
+
+# Solving systems of equations
+
+- by comparing the rank of $\mathbb{A}$ and the augmented matrix, we can find out if the systems of equations have
+  - exactly one solutions, (this is case when $\mathbb{A}$ is ```invertible```)
+  - many solutions, (the solution set exist in ```hyperplane``` which is ```affine nullspace of $A$```)
+  - no solutions (rank of the ```argumented matrix``` is greater than rank of $A$)
+  
+ 
+## General approach
+
+
+$$\begin{aligned}
+\mathbb{A}\vec{x} &= \vec{b}\\
+\mathbb{B}\vec{x}_B+\mathbb{N}\vec{x}_N &= \vec{b} \\
+\mathbb{B}^T\mathbb{B}\vec{x}_B &= \mathbb{B}^T\vec{b} - \mathbb{B}^T\mathbb{N}\vec{x}_N \\
+\vec{x}_B &= \big(\mathbb{B}^T\mathbb{B}\big)^{-1}\mathbb{B}^T\vec{b} - \big(\mathbb{B}^T\mathbb{B}\big)^{-1}\mathbb{B}^T\mathbb{N}\vec{x}_N
+\end{aligned}$$
+
+
+where <br> 
+$\mathbb{A} = [\mathbb{B}|\mathbb{N}]$ <br>
+$\mathbb{B}$ is matrix containing independent column vectors <br>
+$\mathbb{N}$ is matrix containing dependent column vectors
+
+## When RHS is not in the span of the column space
+
+$$\hat{\vec{b}} \neq \vec{b}$$ 
+
+$\hat{\vec{b}} \in C(\mathbb{A})$, where $C(\mathbb{A})$ is a column space of $\mathbb{A}$, among all the vectors in $C(\mathbb{A})$.
+
+$$\vec{b} = B_{C(A)}\vec{x}_{C(A)} + B_{N(A^T)}\vec{x}_{N(A^T)}$$
+
+where <br> 
+$B_{C(A)}$ and $B_{N(A^T)}$ are the basis of $C(A)$ and $N(A^T)$ <br>
+$\vec{x}_{C(A)}$ and $\vec{x}_{N(A^T)}$ are the coordinate of the corresponding basis<br> <br>
+Subsituting $B_{C(A)}$ as $B_{C(A)}$ and $\vec{x}_{C(A)}$ as $\vec{x}_B$, the above equation can be written as the following: 
+
+$$B^T\vec{b} = B^TB\vec{x}_{B}$$
+
+$$\vec{x}_B = (B^TB)^{-1}B^T\vec{b}$$
+
+<br> 
+
+and $(B^TB)^{-1}B^T$ is called ```projection matrix of C(A)``` where $B$ are the basis of $C(A)$
+
+$$\vec{b} = B_{C(A)}\vec{x}_{C(A)} + B_{N(A^T)}\vec{x}_{N(A^T)}$$
+
+where <br> 
+$B_{C(A)}$ and $B_{N(A^T)}$ are the basis of $C(A)$ and $N(A^T)$ <br>
+$\vec{x}_{C(A)}$ and $\vec{x}_{N(A^T)}$ are the coordinate of the corresponding basis<br> <br>
+Subsituting $B_{C(A)}$ as $B_{C(A)}$ and $\vec{x}_{C(A)}$ as $\vec{x}_B$, the above equation can be written as the following: 
+
+$$B^T\vec{b} = B^TB\vec{x}_{B}$$
+
+$$\vec{x}_B = (B^TB)^{-1}B^T\vec{b}$$
+
+<br> 
+
+and $(B^TB)^{-1}B^T$ is called ```projection matrix of C(A)``` where $B$ are the basis of $C(A)$
+
+
+### problem from page 2 of the text
+
+```{r}
+#systems of equations
+A <- matrix(c(2,-1,1.5,1,0,-4),nrow=2,byrow = TRUE)
+
+#solution given in the text
+x <- c(5,6.5,3)
+
+A%*%x
+
+A
+Rank(A)
+
+#RHS
+b <- c(8,-7)
+```
+
+```{r}
+#Is this Homogeneous equations or inhomogeneous equation?
+H <- cbind(A,b)
+H
+rref(H)
+Rank(H)
+```
+
+```{r}
+#unique solution
+A <- matrix(c(1,-2,-1,3), nrow =2 , byrow = TRUE)
+A
+Rank(A)
+
+b <- c(-1,3)
+
+x <- inv(A)%*%b
+
+#get the solution
+A%*%x
+```
+
+```{r}
+#no solution
+
+A <- matrix(c(1,-2,-1,2), nrow =2 , byrow = TRUE)
+Rank(A)
+
+b <- c(-1,3)
+
+#how can I check if we can span b or not?
+
+```
+
+```{r}
+#many solution
+
+A <- matrix(c(1,-2,-1,2), nrow =2 , byrow = TRUE)
+A
+Rank(A)
+
+b <- c(-1,1.5)
+
+H <- cbind(A,b)
+#how can I check if we can span b or not?
+Rank(H)
+```
+
+### See Page 5
+
+```{r}
+a <- c(1,-2,1,0,0,2,-8,8,-4,5,9,-9)
+
+A <- matrix(a, nrow=3, byrow = TRUE)
+Rank(A)
+#okay I made mistake, need to get the
+#RHS out
+b <- A[,4]
+A <- A[,c(1,2,3)]
+A
+Rank(A)
+b
+
+x <- inv(A)%*%b
+
+A%*%x
+```
+
+## Solution Sets to Linear Systems
+
+### See Page 45
+
+```{r}
+a <- c(3,5,-4,-3,-2,4,6,1,-8)
+
+A <- matrix(a, nrow=3, byrow = TRUE)
+Rank(A)
+
+b <- c(7,-1,-4)
+
+H <- cbind(A,b)
+Rank(H)
+
+rref(H)
+
+B <- A[, c(1,2)]
+N <- A[,c(3)]
+```
+
+$$\begin{aligned}
+\mathbb{A}\vec{x} &= \vec{b}\\
+\mathbb{B}\vec{x}_B + \mathbb{N}\vec{x}_N &= \vec{b}\\
+\mathbb{B}^{T}\mathbb{B}\vec{x}_B + \mathbb{B}^{T}\mathbb{N}\vec{x}_N &= \mathbb{B}^{T}\vec{b}\\
+\mathbb{G}\vec{x}_B + \mathbb{B}^{T}\mathbb{N}\vec{x}_N &= \mathbb{B}^{T}\vec{b}\\
+\mathbb{G}^{-1}\mathbb{G}\vec{x}_B + \mathbb{G}^{-1}\mathbb{B}^{T}\mathbb{N}\vec{x}_N &=\mathbb{G}^{-1} \mathbb{B}^{T}\vec{b}\\
+\mathbb{I}\vec{x}_B + \mathbb{G}^{-1}\mathbb{B}^{T}\mathbb{N}\vec{x}_N &=\mathbb{G}^{-1} \mathbb{B}^{T}\vec{b}\\
+\vec{x}_B + \mathbb{G}^{-1}\mathbb{B}^{T}\mathbb{N}\vec{x}_N &=\mathbb{G}^{-1} \mathbb{B}^{T}\vec{b}
+\end{aligned}$$
+
+$$\begin{aligned}
+ax + b_1 &= 5\\
+d + 5c &= 12
+\end{aligned}$$
+
+```{r}
+B
+N
+
+K <- t(B)%*%B 
+
+#get the solution
+x_b <- inv(K)%*%t(B)%*%b  
+
+#check the solution
+B%*%x_b
+
+#  
+inv(K)%*%t(B)%*%N
+4/3
+```
+
+Recall that we have selected first two columns vectors as the basis and
+their coordiate is given as $-1$ and $2$. For the vector in $\mathbb{N}$, we got 
+$\frac{4}{3}$.
+```{r}
+print(A)
+print(x_b)
+```
+
+## Additional information shown in rref(A)
+
+- rref(A) tells you the solution to homogeneous systems of equations (See page 43)
+```{r}
+rref(A)
+```
+
+- rref(A) tells you the relationship between the basis and dependent vectors in 
+expressing the solution vector [-1,2,0]
+
+$$\begin{aligned}
+x_1  \phantom{00} - \phantom{00}\frac{4}{3}x_3 &= -1\\
+\phantom{00} x_2 \phantom{000000}  &= \phantom{-}2\\
+\phantom{00}\phantom{00}0 &= \phantom{-}0
+\end{aligned}$$
+
+## Parametric description of solution sets
+
+- `free variables` act as parameters.  
+  - Can anyone define `parameter`?
+  
+- See the example of parametric description of solution sets
+
+```{r}
+r1 <- c(1,6,2,-5,-2,-4)
+r2 <- c(0,0,2,-8,-1,3)
+r3 <- c(0,0,0,0,1,7)
+
+A <- rbind(r1,r2,r3)
+
+rref(A)
+```
+
+
+$$\begin{aligned}
+x_1 &= -6x_2-3x_4\\
+x_2 &= \text{free} \\
+x_3 &= 5+4x_4 \\
+x_4 &= \text{free}\\
+x_5 &= 7
+\end{aligned}$$
+
+- The above example has $\infty$ number of solutions
+
+## Homogeneous Linear Systems
+
+```{r}
+r1 <- c(3,5,-4,0)
+r2 <- c(-3,-2,4,0)
+r3 <- c(6,1,-8,0)
+
+A <- rbind(r1,r2,r3)
+
+rref(A)
+```
+
+- Now rewrite each row as equations and `free variables` needs to go to the RHS.
+
+$\vec{x} = [ x_1, x_2, x_3 ] = [\frac{4}{3}x_3,0,x_3]$
+
+- Now, let's get the constant out.
+
+$\vec{v} = [\frac{4}{3},0,1]$
+
+- I have not yet explained $\vec{p}$ is, but the idea is that solution set (i.e., hyperplane) can be expressed as `parametric vector equation` of the plane that has the following form.
+
+$$\vec{x} = s\vec{p} + t\vec{v}$$
+
+- People say, the solution is in the `parametric vector form`
+
+```{r}
+r1 <- c(3,5,-4)
+r2 <- c(-3,-2,4)
+r3 <- c(6,1,-8)
+
+b <- c(7,-1,-4)
+
+A <- rbind(r1,r2,r3)
+Ab <- cbind(A,b)
+rref(Ab)
+```
+
+$\vec{x} = [ x_1, x_2, x_3 ]^T = [-1,2,0]^T + [\frac{4}{3}x_3,0,x_3]^T = [-1,2,0]^T + x_3[\frac{4}{3},0,1]$
+
+- Recall that $\mathbb{A}\vec{x}=\vec{0}$ has the parametric vector solution.
+
+- The solution to $\mathbb{A}\vec{x}=\vec{b}$ can be found by  shifting the solution to the $\mathbb{A}\vec{x}=\vec{0}$, which is a subspace, by a constant vector $\vec{p}$.  The resulting solution set is `hyperplane` 
+
+
+## More examples
+
+Given:
+
+$$x_1+6x_2 + 3x_4 = 0$$
+$$3x_3 - 4x_4 = 5$$
+$$x_5 = 7$$
+
+```{r}
+a1 <- c(1,6,0,3,0,0)
+a2 <- c(0,0,1,-4,0,5)
+a3 <-  c(0,0,0,0,1,7)
+a <- c(a1,a2,a3)
+
+A <- matrix(a,nrow=3,byrow=T)
+print(A)
+
+print(rref(A))
+```
+
+This is parametric description of solution set. Affine subspace or hyperplane.
+
+$$x_1 = -6x_2 -3x_3$$
+$$x_2 \text{ is free}$$
+$$x_3 = 5 +4x_4$$
+$$x_4 \text{ is free}$$
+$$x_5 = 7$$
+
+## Network example
+
+```{r}
+a1 <- c(1,1,0,0,0,800)
+a2 <- c(0,1,-1,1,0,300)
+a3 <-  c(0,0,0,1,1,500)
+a4 <-  c(1,0,0,0,1,600)
+a5 <-  c(0,0,1,0,0,400)
+a <- c(a1,a2,a3,a4,a5)
+
+A <- matrix(a,nrow=5,byrow=T)
+print(A)
+rref(A)
+
+B <- A[,1:4]
+b <- A[,c(6)]
+print(B)
+print(b)
+print(Rank(B))
+print(Rank(A))
+```
+
+```{r}
+inv(t(B)%*%B)%*%t(B)%*%b
+```
+
+#  More about invertible matrix 
+
+### Given: Suppose $A\in R^{nxn}$ and $A^{-1}$ exist, then the following can be said
+- The columns of $A$ is the basis of $R^{n}$
+- rank $A$ = n
+- $Nul A=$ {$\vec{0}$}
+- dim $Nul A$ = 0
+- $A^{-1}A=I$
+- $AA^{-1}=I$
+- The Linear transformation $\vec{x} \mapsto A\vec{x}$ is one-to-one
+- $A^T$ is an invertible matrix
+
+- Rouche-Capelli Theorem <
+  - Tells you the number of solutions in the systems of equations
+  - Alfredo Capelli (5 August 1855 – 28 January 1910)
+  
+## Change of basis 
+
+Given:  $\vec{y} \notin C(A)$ , and Rank of $A$ = 2, and $\vec{y} \in R^3$
+
+## ```Problem:```  
+- Let $\hat{\vec{y}} \subset C(A)$ where $\vec{C}_1 \text{ and } \vec{C}_2$ are the basis of $C(A)$
+- Find $\hat{\vec{y}}$ that minimizes $||\vec{y}-\hat{\vec{y}}||$
+
+## Solution:
+- let $C$ and $N$ be the matrix that contains the basis of $C(A)$ and $N(A^T)$
+- Since: $C\vec{x}=\hat{\vec{y}} \text{   and   } C\vec{x} + N\vec{z} = \vec{y}$
+- Simplify the expression
+$$C^TC\vec{x} = C^T\vec{y}$$
+$$\vec{x} = (C^TC)^{-1}C^T\vec{y}$$
+
+- Then, $C(C^TC)^{-1}C^T\vec{y}=\hat{\vec{y}}$
+- $C(C^TC)^{-1}C^T$ is called ```projection matrix```
+
+## Projection matrix
+
+
+$\vec{y} = P\vec{y} + B\vec{y}$ <br>
+$P + B = I$
+
+
+- where  $P \text{ and } B$ are the ```projection matrices``` for $C(A) \text{ and } N(A^T)$
+
+## Dot product
+
+$$\hat{\vec{y}} = P_{\vec{u}}^{\vec{y}} = \frac{\vec{y}\centerdot\vec{u}}{\vec{u}\centerdot\vec{u}}\vec{u}$$
+
+where <br>
+$\vec{y}\centerdot\vec{u} \text{ and } \vec{u}\centerdot\vec{u}$ are scalar quantity.
+
+Projection tells you the ```length``` of the ```projected vector```, $\hat{\vec{y}}$ in terms of the vector that is ```being projected onto``` $\vec{u}$
+
+### Using Projection matrix
+
+```{r}
+# y will be projected onto u
+y <- matrix(c(7,6),nrow=2)
+u <- matrix(c(4,2),nrow=2)
+u0 <- matrix(c(16,8),nrow=2)
+
+## using projection matrix
+P <- u%*%(solve(t(u)%*%u)%*%t(u))
+print(P)
+
+print(P%*%y)
+```
+
+### ```Projection formula``` on to $\vec{u}$
+
+```{r}
+print(drop((t(y)%*%u)/(t(u)%*%u))*u)
+print(drop((t(y)%*%u)/(t(u)%*%u)))
+```
+
+Using ```Projection formula``` on to $\vec{u}_0$
+
+```{r}
+print(drop((t(y)%*%u0)/(t(u0)%*%u0))*u0)
+print(drop((t(y)%*%u0)/(t(u0)%*%u0)))
+```
+
+## Orthonormal basis
+
+```{r}
+mybasis <- matrix(c(1,2,3,4,5,6),nrow=3)
+print(mybasis)
+print(orthonormalization(mybasis))
+```
+
+```{r}
+Z <- (orthonormalization(mybasis)) # z is orthonormal basis of codomain (I called it output space)
+```
+
+```{r}
+A <- matrix(c(4,3,5,6,8,10,5,12,13),nrow=3, byrow=T)
+print(A)
+
+c(Norm(A[1,]),Norm(A[2,]),Norm(A[3,])) #norm of each row vectors in A (i.e., sample)
+```
+
+```{r}
+B <- A%*%Z
+print(B)
+print(Z)
+```
+
+## Change of basis
+
+```{r}
+a <- c(2/3,-2/3,1/3,2/3,1/3,-2/3)
+A <- matrix(a,nrow=3,ncol=2,byrow=T)
+print(fractions(A))
+
+k <- rnorm(10000,5,5)
+myData <- matrix(k,nrow=2,ncol=5000,byrow=T)
+c_A <- A%*%myData
+
+C = orthonormalization(A)
+GS_A<- cbind(C[,1],C[,2])  #orthonormalized basis spanning C(A)
+E <- GS_A%*%myData
+```
+
+- $\vec{b} \notin C(A)$ and suppose I want to flip $\vec{b}$ with respect to $C(A)$
+- How would you develop the transformation matrix that flips $\vec{b}_0$?
+
+```{r}
+b0 <- matrix(c(10,10,10),nrow=3)
+B <- cbind(A,b0)
+print(rref(B))
+```
+
+- Let $D$ transformation matrix that is expressed in terms of the basis spanning $C(A)$ and $N(A^T)$
+- Then, 
+
+
+\begin{equation}
+D = \left(
+\begin{array}{cccc}
+1 & 0 &  0 \\
+0 & 1 &  0 \\
+0 & 0 &-1 \\
+\end{array}
+\right)
+\end{equation}
+
+- Let $\vec{b}_{1C}$ be the flipped vector whose coordiate is expressed in terms of basis spanning $C(A)$ and $N(A^T)$
+- $T\vec{b}_0=\vec{b}_{\text{1standard basis}}$ and $D\vec{b}_{0C} = \vec{b}_{1C}$
+- Then, using 
+ - $\vec{b}_{0C} = \text{[0 0 1]}^T$ and
+ - $\vec{b}_{0} = \text{[10 10 10]}^T$ and
+ - $C$ and $D$, we can get $T$
+ 
+### Find $\vec{b}_{\text{1standard basis}}$
+
+```{r}
+D <- matrix(c(1,0,0,0,1,0,0,0,-1), nrow=3, byrow=T)
+dim(C)
+print(D)
+T <- C%*%D%*%inv(C)
+print(T%*%b0)
+```
+
+## Change of basis is useful
+
+- Can you explain why?
+- Developing transformation matrix
+- Evaluating long term behavior of the transformation matrix
+- Understanding how the initial state will evolve over time
+- Determining the influence of each basis of $C(A^T)$ to the $C(A)$
+
+## Question
+
+- Explains what happens when you project $\vec{x}$ onto
+  - basis that are not orthogonal
+    - Try add the projected ones and compare with the original 
+  - basis that are orthogonal, but not normal
+  - basis that are **orthonormal**
+and add the projected vector.

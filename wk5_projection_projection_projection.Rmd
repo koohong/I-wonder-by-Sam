@@ -1,0 +1,203 @@
+---
+title: 'Linear Algebrea: wk5 projection'
+author: "Bill Chung"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r message=FALSE, warning=FALSE}
+library(far)
+library(MASS)
+library(pracma)
+library(expm)
+```
+
+#  More about invertible matrix 
+
+## Given: Suppose $A\in R^{nxn}$ and $A^{-1}$ exist, then the following can be said
+- The columns of $A$ is the basis of $R^{n}$
+- rank $A$ = n
+- $Nul A=$ {$\vec{0}$}
+- dim $Nul A$ = 0
+- $A^{-1}A=I$
+- $AA^{-1}=I$
+- The Linear transformation $\vec{x} \mapsto A\vec{x}$ is one-to-one
+- $A^T$ is an invertible matrix
+
+
+## Change of basis 
+
+Given:  $\vec{y} \notin C(A)$ , and Rank of $A$ = 2, and $\vec{y} \in R^3$
+
+### Problem 1  
+- Let $\hat{\vec{y}} \subset C(A)$ where $\vec{C}_1 \text{ and } \vec{C}_2$ are the basis of $C(A)$
+- Find $\hat{\vec{y}}$ that minimizes $||\vec{y}-\hat{\vec{y}}||$
+
+
+### Solution:
+- let $C$ and $N$ be the matrix that contains the basis of $C(A)$ and $N(A^T)$
+- Since: $C\vec{x}=\hat{\vec{y}} \text{   and   } C\vec{x} + N\vec{z} = \vec{y}$
+- Simplify the expression
+
+$$\begin{aligned}
+C^TC\vec{x} &= C^T\vec{y} \\
+\vec{x} &= (C^TC)^{-1}C^T\vec{y} 
+\end{aligned}$$
+
+- Then, 
+
+$$C(C^TC)^{-1}C^T\vec{y}=\hat{\vec{y}}$$
+
+- $C(C^TC)^{-1}C^T$ is called **projection matrix***
+
+# About projection matrix
+
+$$\begin{aligned}
+ \mathbb{I}  &= \mathbb{P} + \mathbb{B} \\
+\vec{y} &= \mathbb{P}\vec{y} + \mathbb{B}\vec{y}\\
+\end{aligned}$$
+
+
+- where  $P \text{ and } B$ are the ```projection matrices``` for $C(A) \text{ and } N(A^T)$
+
+
+## DOT Product  
+
+$$\hat{\vec{y}} = P_{\vec{u}}^{\vec{y}} = \frac{\vec{y}\centerdot\vec{u}}{\vec{u}\centerdot\vec{u}}\vec{u}$$
+
+where 
+
+$\vec{y}\centerdot\vec{u} \text{ and } \vec{u}\centerdot\vec{u}$ are scalar quantity.
+
+Projection tells you the ```length``` of the ```projected vector```, $\hat{\vec{y}}$ in terms of the vector that is ```being projected onto``` $\vec{u}$
+
+
+```{r}
+# y will be projected onto u
+y <- matrix(c(7,6),nrow=2)
+u <- matrix(c(4,2),nrow=2)
+u0 <- matrix(c(16,8),nrow=2)
+```
+
+
+# Orthogonal 
+
+- Two vectors  $\vec{v_1}$ and $\vec{v_2} \in R^m$ are orthogonal, if $\vec{v_1} \centerdot \vec{v_2}=0$
+- Note that the dot product produce scalar quantity 0 not $\vec{0}$
+
+- Notice $\vec{v}_1$ is size of 3 vector and `orth( )` returns normalized $\vec{v}_1$
+
+```{r}
+v1 <- c(3,4,5)
+```
+
+## Normalizing the basis
+
+```{r}
+c_A <- orth(v1)
+print(c_A)
+```
+
+```{r}
+#notice what happens when you dot v1 and c_A
+print(v1%*%c_A)
+```
+
+```{r}
+Norm(v1)
+```
+
+## Space, subspace, orthogonal complement subspace 
+
+- Let $S$ be space of $R^n$, $A$ is $R^{mxn}$ matrix. 
+- Let $C(A)$ and $N(A^T)$ be the column space and left nullspace of $A$
+- $C(A)$ and $N(A^T)$ are orthogonal complement subspace of each other.
+- Then, any vector, $\vec{x} \in S$ but $\vec{x} \notin C(A) \text{ or } \vec{x} \notin N(A^T)$ <br>
+can be expressed by the linear combination of basis of $C(A) \text{ and } N(A^T)$
+
+###  Diagonal matrix 
+
+```{r}
+D1 <- diag(c(5,2,10),3,3)
+print(D1)
+```
+
+```{r}
+print(inv(D1)) #notice when the diagonal elements has zero in it, D1 becomes singular.
+```
+
+```{r}
+print(D1 %^% 3) # using the function in expm
+```
+
+# Orthogonal matrix 
+
+$$U^{-1} = U^T$$
+
+- Let $W$ be a subspace of $R^n$ and let $\vec{y} \in R^n$ but $\vec{y} \notin W$.  
+- Then, $\hat{\vec{y}} \in W$ that is the closest approximation of $\vec{y}$ is the $\vec{y}$ projected onto $W$
+
+## Proerty of matrx that is not square, but has orthonormal basis
+
+```{r}
+v <- matrix(c(2,1,2),nrow=3)
+O <- orthonormalization(v)
+print(O)
+```
+
+```{r}
+U <- cbind(O[,1],O[,2])
+print(t(U)%*%U)
+```
+
+Suppose $C$ is matrix that contains orthonormal basis of $W$.  Since there exist $\vec{y} \notin W$, $C$ can't be square matrix. <br>
+
+However, the basis in $C$ can still be ```orthonormal```.  <br>
+
+Let $C$ be retangular matrix with orthonormal basis,
+
+$$\vec{y} = C\vec{x}_w + N\vec{x}_N$$ 
+where 
+- $N$ is the basis spanning orthogonal complement subspace of $W$. Then,<br><br>
+ $$C^{T}\vec{y} = C^TC\vec{x}_w$$ <br>
+ 
+Since $C$ is matrix that contains orthonormal basis, $C^TC$ becomes identify matrix. <br><br>
+$$C^{T}\vec{y} = \vec{x}_W $$ <br>
+Now, the location of $\hat{\vec{y}}$ in terms of the basis in $C$ can be expressed as below <br>
+$$C\vec{x}_W = \hat{\vec{y}}$$ <br>
+
+Solving for $\vec{x}_W$
+$$\vec{x}_W = C^T\hat{\vec{y}}$$<br>
+
+Sub the above expression of $\vec{x}_W$ to the following equation
+
+$$C^{T}\vec{y} = C^TC\vec{x}_w$$ <br>
+
+$$C^{T}\vec{y} = C^TC(C^T\hat{\vec{y}})$$ <br>
+
+Then,
+
+$$CC^T\vec{y} = \hat{\vec{y}}$$
+
+# Gram-Schmidt Process
+
+- Let {$\vec{x}_1,\vec{x}_2...\vec{x}_p$} be basis for a nonzero subspace $W$ of $R^n$ where $p < n$. <br><br>
+Gram-Schimidt process converts {$\vec{x}_1,\vec{x}_2...\vec{x}_p$} to  {$\vec{v}_1,\vec{v}_2...\vec{v}_p$} where  {$\vec{v}_1,\vec{v}_2...\vec{v}_p$} are orthogonal basis for $W$ <br><br>
+
+
+- Gram-Schimit process is projecting one set of basis to another basis that is orthogonal to them. <br><br>
+
+
+- Notice the `orthonormalization( )` in `R` returns 3 x 3 matrix.  This function in R returns the basis spanning the subspace that is orthogonal to subspace spanned by $\vec{v}_1$ 
+
+```{r}
+GS <- orthonormalization(v1)
+print(GS)
+```
+
+
+[Gram-Schmidt](https://cran.r-project.org/web/packages/matlib/vignettes/gramreg.html)

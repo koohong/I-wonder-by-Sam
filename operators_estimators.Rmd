@@ -1,0 +1,329 @@
+---
+title: "Linear Algebra Study group"
+author: "Bill Chung"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output: pdf_document
+---
+
+```{r message=FALSE, warning=FALSE}
+library(far)
+library(MASS)
+library(pracma)
+```
+
+
+## Terms:
+  - size of vector, span
+  - linear combination
+  - subspace: contains zero, closed under addition and multiplcation
+  - norm and dot product, unit vector
+  - dependent and independent vectors
+  - rref, C(A)
+  - Singular (degenerate) and nonsingular matrix
+  - Covariance matrix
+- $\mathbb{I}$
+
+
+## Law of Total Probability
+
+$$\begin{aligned}
+P(B) &= \sum_iP(B \cap A_i) \\
+&= \sum_iP(B|A_i)P(A_i)
+\end{aligned}$$
+
+$$\begin{aligned}
+P(B) &= \sum_iP(B \cap A_i) \\
+&= \sum_iP(B|A_i)P(A_i)
+\end{aligned}$$
+
+### Conditional probability
+
+$$\begin{aligned}
+&\text{Conditional probability} \\
+f_{Y|X}(y|x)&=Pr[Y=y|X=x] \\
+&= \frac{f(x,y)}{f_X(x)} 
+\end{aligned}$$
+
+### Bayes' Rule and Conditional probability
+
+$$\begin{aligned}
+P(A | B) &= \frac{P(A|B)P(B)}{P(B)}\\
+&= \frac{P(A|B)P(B)}{P(A|B)P(B) + P(A|B^c)P(B^c)}\\
+\end{aligned}$$
+
+### Joint probability
+
+$$\begin{aligned}
+P(A \cup B) &= P(A) + P(B) - P(A\cap B)\\
+f(x,y) &= Pr[ X=x,Y=y ] \phantom{0}\forall x,y \in R\\
+F(x,y) &= Pr[ X \le x,Y\le y ] \phantom{0} \forall x,y \in R\\
+\end{aligned}$$
+
+
+### Marginal probability
+
+$$\begin{aligned}
+f_Y &= Pr[Y=y] \\
+&= \sum_{x \in Supp[X]} f(x,y), \forall y \in R\\
+\end{aligned}$$
+
+
+## Law of Iterated Expectation
+
+$$E[Y] = E[E[Y|X]]$$
+
+## Law of Total Variance
+
+$$V[Y] = E[V[Y|X]] + V[E[Y|X]]$$
+
+
+
+# Operators 
+
+## Expectation Operator
+
+$$\begin{aligned}
+E[x]& = \sum_x xf(x) \\
+&= \int_{-\infty}^{\infty}xf(x)dx\\
+\phantom{000}\\
+E[g(x)]& = \sum_xg(x)f(x) \\
+&= \int_{-\infty}^{\infty}g(x)f(x)dx\\
+\phantom{000}\\
+E[\vec{x}]&= (E[x_1],E[x_2]...E[x_n]) \\
+\phantom{000}\\
+E[h(X,Y)]&= \sum_x\sum_y h(x,y)f(x,y) \\
+&= \int \int h(x,y)f(x,y)dydx \\
+\end{aligned}$$
+
+### Conditional Expectation
+
+$$\begin{aligned}
+&\text{Conditional Expectation} \\
+E[Y|X=x] &= \sum_{y}y f_{Y|X}(y|x) \phantom{00}\forall x \in Supp[X]\\
+&= \int_{-\infty}^{\infty}y f_{Y|X}(y|x)dy \phantom{00}\forall x \in Supp[X]\\
+\phantom{0}\\
+E[h(X,Y)|X=x] &= \sum_{y}h(x,y) f_{Y|X}(y|x) \phantom{00}\forall x \in Supp[X]\\
+&= \int_{-\infty}^{\infty}h(x,y) f_{Y|X}(y|x)dy \phantom{00}\forall x \in Supp[X]\\
+\end{aligned}$$
+
+## Variance
+
+$$V[X] = \sigma_X^2=\sum_{i=1}^{N}(X_i-E(X))^2p_i$$
+
+
+### Sample variance 
+
+- Population variance estimated from sample
+
+
+$$\hat{V}(X)= S^2_X = \frac{1}{n-1}\sum_{i=1}^{n}(X_i - \bar{X})^2$$
+
+$$\hat{V}(X) = \frac{n}{n-1}(\bar{X^2}-(\bar{X})^2)$$
+
+### Properties of variance
+
+$$\begin{aligned}
+V[X] &= E[(X-E[X])^2]\\
+&= E[X^2] - E[X]^2 \\
+\phantom{000}\\
+V[X=c] &= V[X] \\
+V[aX] &= a^2V[X]\\
+\phantom{000}\\
+\sigma_X &= \sqrt{V[X]} 
+\end{aligned}$$
+
+
+### Conditional Variance
+
+$$\begin{aligned}
+V[Y|X=x] &= E[(Y-E[Y|X=x])^2|X=x] \phantom{00}\forall x \in Supp[X] \\
+&= E[Y^2|X=x] - E[Y|X=x]^2 \phantom{00} \forall x \in Supp[X]\\
+\end{aligned}$$
+
+
+## Covariance
+
+$$\begin{aligned}
+&\text{covariance } \\
+Cov[X,Y] &= E[(X-E[X])(Y-E[Y])]\\
+&= E[XY] - E[X]E[Y]\\
+\end{aligned}$$
+
+If $X$ and $Y$ are indepdendent
+
+$$Cov[X,Y]= 0$$
+If $A$ and $B$ are indepdendent
+
+$$\begin{aligned}
+P(A\cap B) &= P(A)P(B) \\
+P(A|B) &= P(A) \\
+\end{aligned}$$
+
+
+## Correlation
+
+$$\rho =\frac{Cov[X,Y]}{\sigma_X\sigma_Y}$$
+
+### Sample Correlation (need to confirm the formula)
+
+$$ \hat{\rho}(X,Y)= \frac{1}{N-1}\frac{\sum_{i=1}^{N}(X_i - \bar{X})(Y_i-\bar{Y})}{S_X S_Y}$$
+
+
+
+
+
+# Estimator
+
+## Mean Squared error (MSE)
+
+### defined using a constant
+
+$$\begin{aligned}
+E[(X-c)^2]&=V[X] + (E[X]-c)^2\\
+\phantom{000}\\
+\end{aligned}$$
+
+### defined using a function 
+
+$$\begin{aligned}
+E[(Y-g(X))^2]&=E[E[(Y-g(X))^2|X]]\\
+&=E[E[Y^2-2Yg(X)+g^2(X)|X]]\\
+&=E[E[Y^2|X]-E[2Yg(X)|X]+E[g^2(X)|X]]\\
+&\text{condition on X, g(X) can be treated as constant}\\
+&\text{complete the square} \\
+&=E[\big{(}E[Y^2|X]-E^2[Y|X]\big{)}+E^2[Y|X]-E[2Yg(X)|X]+g^2(X)\\
+&=E\big{[}\big{(}E[Y^2|X]-E^2[Y|X]\big{)}+(E^2[Y|X]-2g(X)E[Y|X] + g^2(X))\big{]}\\
+&\text{using the def of variance, the first term can be simplied} \\
+&=E\big{[}V[Y|X]\big{]} + (E[Y|X]-g(X))^2\\
+&\text{If you are choosing some function g, you can't do better than: }E[Y|X=x] \\
+\end{aligned}$$
+
+### Break down MSE (see page 104)
+
+$$\begin{aligned}
+&\text{MSE of Estimator} \\
+E[(\theta-\hat{\theta})^2]&= V[\hat{\theta}]+ \big{(}E[\hat{\theta}]-\theta\big{)}^2\\
+&=\text{variance of statistics (sampling variance)}\\
+&+\text{systematic difference between the expected value of the estimator and true value of the parameter}\\
+\end{aligned}$$
+
+
+## Expected value
+
+$$E[x] = \sum_x xf(x)$$
+
+## Mean 
+
+- Estimator that estimates population mean, $E[X]$ based on sample
+- This is a statistic. 
+- Differnet sample, differnet sample mean
+
+$$\bar{X}=\sum_{i=1}^{n}\frac{X_i}{n}$$
+
+## Central Limit Theorem
+
+$$\begin{aligned}
+&lim_{n \rightarrow \infty}P(\frac{Y_1+Y_2..+Y_n-n\mu}{\sigma\sqrt{n}}\le z)=\Phi(z)
+\phantom{000}\\
+&\text{where} \\
+&Y_i \text{is iid}\\
+Z&=\frac{Y_1+Y_2..+Y_n-n\mu}{\sigma\sqrt{n}}\\
+&=\frac{\bar{Y}-\mu}{\frac{\sigma}{\sqrt{n}}}
+\end{aligned}$$
+
+
+
+### Sample variation (z-stat)
+
+- Variance of estimator (this case, mean)
+$$\begin{aligned}
+V[\bar{X}] &= V[\frac{1}{n}(X_1+X_2+...+X_n)] \\
+&=\frac{1}{n^2}(V[X_1] + V[X_2] + .. + V[X_n]\\
+&=\frac{V[X]}{n}\\
+\text{where}\\
+V[X] &=\text{population mean, this never changes}\\
+V[\bar{X}] &=\text{Sampling variance of sample mean, this decreases as n goes up}\\
+&\phantom{0} \\
+&\text{Standard error} \\
+&\text{Estimated standard deviation of the sampling distribution} \\
+&\sqrt{Var[\bar{X}]}
+\end{aligned}$$
+
+### Estimated sample variation (t-stat)
+
+- Estimated variance of estimator 
+- (a.k.a) estimated standard deviation of the sampling distribution
+$$\hat{V}(\bar{X}) = \frac{\hat{V}(X)}{n}$$
+
+\break
+
+# P-value, size of test, power of test
+
+
+```{r echo=FALSE}
+#changing the picture size
+options(repr.plot.width=8, repr.plot.height=6)
+
+curve(dnorm,-4,4)
+xvar<-seq(-4,2,length=100)
+dvals<-dnorm(xvar)
+## pnorm
+polygon(c(xvar,rev(xvar)),c(rep(0,100),rev(dvals)),col='grey70')
+arrows(1,.15,2,.25,code=1,angle=45,length=.1,lwd=2)
+text(2,.25,paste('pnorm(2) = ',round(pnorm(2),3)),pos=3,cex=.85)
+### dnorm
+segments(2,0,2,dnorm(2),lwd=2,col='tomato')
+arrows(2,dnorm(2),2.35,.13, code=1, angle=30, length=.1, lwd=2, col=2)
+text(2.35,.13,paste('dnorm(2) =', round(dnorm(2),3)), cex=.85, pos=3, col=2)
+### qnorm
+points(2,0,col='dodgerblue',pch=16,cex=1.1)
+arrows(2,0,3.1,.05,code=1,angle=30,length=.1,lwd=2,col=4)
+text(3.1,.05,paste('qnorm(',round(pnorm(2),3),') = 2'), cex=.85, pos=3, col=4)
+#rnorm
+par(xpd=T)
+points(rnorm(50),jitter(rep(0,50)),pch=16,cex=.6,col='seagreen')
+arrows(-1,0.01,-2,.15,code=1,angle=30,length=.1,lwd=2,col='seagreen')
+text(-2,.15,'rnorm(50)',col='darkgreen',cex=.85,pos=3)
+par(xpd=F)
+mtext(side=3,line=.3,'X ~ Normal(0,1)',cex=.9,font=2)
+```
+
+
+- `p-value` is something that you observe, `size of test` is what you select
+and `power of test` is evaluated against another value of your parameter. 
+
+
+
+- Average human body temperature is `98.6` and body temperature is a good indication 
+of person's health and detecting `aliens` 
+- suppose we know population `variance`. Then, the sample we measure can be normalized to form `z-statistic`
+
+- Suppose we send a person whose body temperature deviates a lot from `98.6`. This is
+indication that the person is either `sick` or not a `human`.
+  - $\alpha$ is `the size of the test` 
+  - False positive is sending someone who is healthy to hospital.
+  - False negative is not sending a sick person to hospital.
+  - If I send someone to hospital based on this rule, I will be sending healthy
+  person to hospital 5% of time at maximum.
+  
+
+|           |      $H_0: \mu = 0$      |  $H_A : \mu \not= 0$ |
+|---------- |:-------------:|------:|
+|Not reject | Correct           |  |
+| Reject    |    Type I Error ($\alpha$)   |    |
+
+
+
+
+- Now suppose that some of the subject were actaully aliens whose mean body temperature
+was 103 with same variance.  If I apply the same rule to these aliens, what percent of time
+would I be able to correct detect `aliens`?
+
+- What percent of time would I fail to detect `aliens`?
+
+|           |      $H_0: \mu = 0$      |  $H_A : \mu \not= 0$ |
+|---------- |:-------------:|------:|
+|Not reject | Correct           | Type II Error ($\beta$) |
+| Reject    |    Type I Error ($\alpha$)   |  Correct ($1-\beta$) power of test   |
+
+
