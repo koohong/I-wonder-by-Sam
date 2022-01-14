@@ -47,8 +47,8 @@ f_{Y|X}(y|x)&=Pr[Y=y|X=x] \\
 ### Bayes' Rule and Conditional probability
 
 $$\begin{aligned}
-P(A | B) &= \frac{P(A|B)P(B)}{P(B)}\\
-&= \frac{P(A|B)P(B)}{P(A|B)P(B) + P(A|B^c)P(B^c)}\\
+P(A | B) &= \frac{P(B|A)P(A)}{P(B)}\\
+&= \frac{P(B|A)P(A)}{P(B|A)P(A) + P(B|A^c)P(A^c)}\\
 \end{aligned}$$
 
 ### Joint probability
