@@ -18,6 +18,13 @@ library(expm)
 
 # Test 1 on new project
 
+```{r}
+rnorm(10)
+
+rnorm(5)
+```
+
+
 #  More about invertible matrix 
 
 ## Given: Suppose $A\in R^{nxn}$ and $A^{-1}$ exist, then the following can be said
