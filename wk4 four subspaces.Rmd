@@ -47,6 +47,8 @@ rref(A)
 ```{r}
 C_A = orth(A)
 C_A
+
+round(t(C_A[,1])%*%C_A[,2],4)
 ```
 
 ## Left Nullspace($\mathbb{A}^T$)
@@ -59,8 +61,11 @@ N_AT
 ## Basis for output space
 
 ```{r}
+print(A)
+
 OUT <- cbind(C_A, N_AT)
 rref(OUT)
+inv(OUT)
 ```
 
 ## Row space basis 
@@ -84,6 +89,12 @@ C_AT
 ```{r}
 N_A <- nullspace(A)
 N_A
+
+x_N <- 3*N_A[,1] + 0.2*N_A[,2]
+x_N
+
+
+round(A%*%x_N,2)
 ```
 
 ## Basis spanning the input space
@@ -91,6 +102,8 @@ N_A
 ```{r}
 IN <- cbind(C_AT, N_A)
 IN
+
+inv(IN)
 ```
 
 
