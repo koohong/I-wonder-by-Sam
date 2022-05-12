@@ -1,8 +1,8 @@
 |Date | lecture notes |
 |:---:|:---:|
-|1/14/2022| WK 1,2 3 notes|
-|1/21/2022| WK 4,5 notes |
-|1/28/2022| Review of Test 1  and wk 5 reivew  |
+|1st| WK 1,2 3 notes|
+|2nd| WK 4,5 notes |
+|3rd| Review of Test 1  and wk 5 reivew  |
 
 [Calendar](https://mids-w203.github.io/syllabus/)
 
