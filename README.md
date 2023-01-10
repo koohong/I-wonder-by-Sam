@@ -1,5 +1,5 @@
 |Date | Topcis|
-|:---:|:---:|
+|:---:|:---|
 |1| independent, dependent vectors, subspace, basis, change of basis, span|
 |2| orthogonal, norm, dot product, projection |
 |3| matrix, the fundamental four subspaces of matrix  |
