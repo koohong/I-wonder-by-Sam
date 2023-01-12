@@ -18,6 +18,9 @@ library(expm)
 
 # Welcome
 
+- Goal: 
+  - Be able to explain the difference between $\epsilon$ and $\hat{\epsilon}$
+  - Why $\hat{\epsilon}$ will orthogonal to all the features in your MLR
 
 ## Recommended books
 
