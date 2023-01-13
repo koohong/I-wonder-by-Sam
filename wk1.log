@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.12.27)  11 JAN 2023 23:13
+This is pdfTeX, Version 3.141592653-2.6-1.40.24 (TeX Live 2022) (preloaded format=pdflatex 2022.12.27)  12 JAN 2023 16:10
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -493,44 +493,56 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 143.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 143.
-LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 175.
+[1
+
+{c:/Users/kooho/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}]
+<fig/1.jpg, id=130, 478.78876pt x 270.41025pt>
+File: fig/1.jpg Graphic file (type jpg)
+<use fig/1.jpg>
+Package pdftex.def Info: fig/1.jpg  used on input line 184.
+(pdftex.def)             Requested size: 478.78758pt x 270.40958pt.
+
+Overfull \hbox (9.03256pt too wide) in paragraph at lines 184--184
+ [] 
+ []
+
+[2 <./fig/1.JPG>]
+LaTeX Font Info:    Trying to load font information for TS1+lmtt on input line 212.
 (c:/Users/kooho/AppData/Roaming/TinyTeX/texmf-dist/tex/latex/lm/ts1lmtt.fd
 File: ts1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
-Underfull \hbox (badness 10000) in paragraph at lines 175--177
+Underfull \hbox (badness 10000) in paragraph at lines 212--214
 []\T1/lmtt/m/n/10 Young man, in mathmatics, you don\TS1/lmtt/m/n/10 '\T1/lmtt/m/n/10 t understand things. You just get used to them \T1/lmr/m/n/10 by
  []
 
 
-Underfull \hbox (badness 5652) in paragraph at lines 185--188
+Underfull \hbox (badness 5652) in paragraph at lines 222--225
 [][]\T1/lmr/m/n/10 Leonoid Kan-torovich[] (1912 - 1986): \T1/lmtt/m/n/10 A new method of solving some classes of extrmal
  []
 
-[1
-
-{c:/Users/kooho/AppData/Roaming/TinyTeX/texmf-var/fonts/map/pdftex/updmap/pdftex.map}] [2] [3] [4] [5]
+[3] [4] [5] [6]
 
 Package amsmath Warning: Foreign command \atopwithdelims;
 (amsmath)                \frac or \genfrac should be used instead
-(amsmath)                 on input line 590.
+(amsmath)                 on input line 627.
 
-[6] [7] (./wk1.aux)
+[7] [8] [9] (./wk1.aux)
 Package rerunfilecheck Info: File `wk1.out' has not changed.
-(rerunfilecheck)             Checksum: DC6D3420F2A071FED0323E02A196BCB5;3220.
+(rerunfilecheck)             Checksum: 7D8F5B1ACAC8E553202C60C518E66052;3375.
  ) 
 Here is how much of TeX's memory you used:
- 11873 strings out of 478053
- 186511 string characters out of 5839307
- 1868787 words of memory out of 5000000
- 31737 multiletter control sequences out of 15000+600000
- 563143 words of font info for 75 fonts, out of 8000000 for 9000
+ 11899 strings out of 478053
+ 186807 string characters out of 5839307
+ 1867787 words of memory out of 5000000
+ 31753 multiletter control sequences out of 15000+600000
+ 569116 words of font info for 77 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
- 72i,7n,77p,407b,535s stack positions out of 10000i,1000n,20000p,200000b,200000s
-{c:/Users/kooho/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{c:/Users/kooho/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/Users/kooho/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/Users/kooho/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/Users/kooho/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{c:/Users/kooho/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}<c:/Users/kooho/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/kooho/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/kooho/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/Users/kooho/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/Users/kooho/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/Users/kooho/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/kooho/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/Users/kooho/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb><c:/Users/kooho/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/Users/kooho/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/Users/kooho/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/Users/kooho/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtti10.pfb><c:/Users/kooho/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on wk1.pdf (7 pages, 238151 bytes).
+ 72i,11n,77p,407b,546s stack positions out of 10000i,1000n,20000p,200000b,200000s
+{c:/Users/kooho/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ec.enc}{c:/Users/kooho/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-ts1.enc}{c:/Users/kooho/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathex.enc}{c:/Users/kooho/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathsy.enc}{c:/Users/kooho/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-mathit.enc}{c:/Users/kooho/AppData/Roaming/TinyTeX/texmf-dist/fonts/enc/dvips/lm/lm-rm.enc}<c:/Users/kooho/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx10.pfb><c:/Users/kooho/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmbx12.pfb><c:/Users/kooho/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmex10.pfb><c:/Users/kooho/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi10.pfb><c:/Users/kooho/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmmi7.pfb><c:/Users/kooho/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr10.pfb><c:/Users/kooho/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr12.pfb><c:/Users/kooho/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr17.pfb><c:/Users/kooho/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmr7.pfb><c:/Users/kooho/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmri10.pfb><c:/Users/kooho/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy10.pfb><c:/Users/kooho/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmsy7.pfb><c:/Users/kooho/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtt10.pfb><c:/Users/kooho/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/lm/lmtti10.pfb><c:/Users/kooho/AppData/Roaming/TinyTeX/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on wk1.pdf (9 pages, 321361 bytes).
 PDF statistics:
- 264 PDF objects out of 1000 (max. 8388607)
- 223 compressed objects within 3 object streams
- 59 named destinations out of 1000 (max. 500000)
- 201 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 289 PDF objects out of 1000 (max. 8388607)
+ 241 compressed objects within 3 object streams
+ 63 named destinations out of 1000 (max. 500000)
+ 214 words of extra memory for PDF output out of 10000 (max. 10000000)
 

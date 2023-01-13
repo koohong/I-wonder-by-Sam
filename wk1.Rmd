@@ -22,6 +22,39 @@ library(expm)
   - Be able to explain the difference between $\epsilon$ and $\hat{\epsilon}$
   - Why $\hat{\epsilon}$ will orthogonal to all the features in your MLR
 
+## Snap shot from wk9
+
+$$\begin{aligned}
+V[\hat{\vec{\beta}}] &= E[(\hat{\vec{\beta}}-\vec{\beta})^2]\\
+\phantom{0}
+&=E[(\hat{\vec{\beta}}-\vec{\beta})(\hat{\vec{\beta}}-\vec{\beta})^T]\\
+\end{aligned}$$
+
+- now look at the expression for $\hat{\vec{\beta}} = (\mathbb{X}^T\cdot \mathbb{X})^{-1}\mathbb{X}^T(\vec{y})$, sub this expression back to $\hat{\vec{\beta}}$, then
+
+$$\begin{aligned}
+V[\hat{\vec{\beta}}]&=E[(\hat{\vec{\beta}}-\vec{\beta})(\hat{\vec{\beta}}-\vec{\beta})^T]\\
+\phantom{0}
+&=E[\big{(}(\mathbb{X}^T\cdot \mathbb{X})^{-1}\mathbb{X}^T\vec{\epsilon}\big{)}\big{(}(\mathbb{X}^T\cdot \mathbb{X})^{-1}\mathbb{X}^T\vec{\epsilon}\big{)}^T]\\
+\phantom{0}
+&\text{gram matrix is symmetric matrix}\\
+\phantom{0}
+&=E[\big{(}(\mathbb{X}^T\cdot \mathbb{X})^{-1}\mathbb{X}^T\vec{\epsilon}\big{)}\big{(}\vec{\epsilon}^T\mathbb{X}\cdot (\mathbb{X}^T\mathbb{X}\big{)}^{-1})]\\
+\phantom{0}
+&=E[\big{(}(\mathbb{X}^T\cdot \mathbb{X})^{-1}]\cdot E[\mathbb{X}^T\vec{\epsilon}\vec{\epsilon}^T\mathbb{X}]\cdot E[(\mathbb{X}^T\mathbb{X}^{-1})]\\
+&\text{the gram matrix becomes variance and covariance matrix when centered}\\
+&=\frac{E[\mathbb{X}^T\vec{\epsilon}\vec{\epsilon}^T\mathbb{X}]}{(E[\mathbb{X}^T\cdot \mathbb{X}])^2}\\
+\end{aligned}$$
+
+
+\break
+
+```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE}
+knitr::include_graphics("fig/1.JPG")
+```
+
+\break 
+
 ## Recommended books
 
 - `Linear Algebra and its application` by David C.Lay 4th edition
