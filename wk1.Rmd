@@ -184,6 +184,7 @@ a2 <- matrix(c(3,0,-1,5,2,4),nrow=1,byrow=T)
 
 A <- rbind(a1,a2)
 print(A)
+
 ```
 
 
