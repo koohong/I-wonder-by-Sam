@@ -1,14 +1,71 @@
 ---
-title: "wk2"
-author: "Bill Chung"
-date: "9/18/2021"
-output: pdf_document
+title: "Background"
+author: "your_name"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: true
+    toc_depth: 3
+    toc_float: 
+      collapsed: false
+      smooth_scroll: false
+      number_sections: true
+      fig_caption: TRUE
+    css: "style.css"
+editor_options: 
+  chunk_output_type: console
 ---
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(expm) 
+library(pracma)
+library(far)
+library(Matrix)
 ```
+
+
+# Review
+
+- Let $\vec{y}$, $\vec{v_1}$ and $\vec{v_2} \in R^m$ (this refers to m dimensional space where each elements is real number)
+
+- Suppose you can express $\vec{y}$ as linear combination of $\vec{v_1}$ and $\vec{v_2}$ 
+
+$$\vec{y} = c_1\vec{v_1} +c_2\vec{v_2}$$
+
+- $c_1$ and $c_2$ can be viewed as weight of $\vec{v_1}$ and $\vec{v_2}$  <br><br>
+
+- Above equation is also saying that $\vec{y}$ can be expressed as linear combination of $\vec{v_1}$ and $\vec{v_2}$ <br><Br>
+- Above equation is also saying that $\vec{y} \in$ Span{$\vec{v_1}$, $\vec{v_2}$}
+
+### Basis
+- Basis refers to minimum set of vectors to span a subspace or space.
+    - Basis are independent of each other
+    - For a given subspace or space, there are $\infty$ number of set of basis
+    - Basis are not unique.
+    
+### Orthogonal basis
+- Refers to basis that are orthogonal to each other
+- $\vec{v_1}$ and $\vec{v_2}$ are orthogonal, if $\vec{v_1}\vec{v_2} = 0$
+- $\vec{v}$$\vec{v}^{\perp}=0$ 
+
+### Orthonormal basis
+- basis that are 
+  - orthogonal
+  - < $\vec{v_i}$,$\vec{v_i}$ > = 1  for all basis
+
+\break
+
+## Domain and Codomain
+
+- Inverse matrix revisted
+- Inverse function 
+- preimage of 
+
+For a given function, the set of all elements of the domain that are mapped into a given subset of the codomain; (formally) given a function $ƒ : X → Y$ and a subset $B ⊆ Y$, the set $ƒ^{−1}(B) = {x ∈ X : ƒ(x) ∈ B}$. 
+
+\break
 
 # Conditional Probablity example
 
@@ -173,5 +230,74 @@ $$\mathbb{A}\vec{x} = \vec{b}$$
 ### Linear combination, Projection and transformation
 
 $$\mathbb{A}\vec{x} = \vec{b}$$
+\break
+
+# Projection 
+
+$$\text{Proj}_{\vec{u}}{\vec{v}} = \frac{\vec{v}\vec{u}}{{||\vec{u}||}}$$
+```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE}
+knitr::include_graphics("fig/3.JPG")
+```
+
+```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE}
+knitr::include_graphics("fig/4.JPG")
+```
+
+## example 1
+
+```{r}
+v <- c(3,4)
+u <- c(5,-12)
+
+p <- v%*%u/(t(u)%*%u)
+
+p
+```
+
+## example 2
+
+```{r}
+v <- c(4,3)
+u <- c(1,0)
+
+p <- v%*%u/(t(u)%*%u)
+
+p
+```
+
+## example 3
+
+```{r}
+v <- c(4,3)
+u <- c(0,2)
+
+p <- v%*%u/(t(u)%*%u)
+
+p
+```
+
+
+```{r}
+library(wooldridge)
+library(tidyverse)
+library(patchwork)
+
+df <- wooldridge::bwght
+
+glimpse(df)
+unique(df$parity)
+
+p1 <- df %>% filter(parity %in% c(1,2,3)) %>% ggplot(aes(x=bwght, y = faminc, color = factor(male))) + geom_point() + facet_wrap(~male)
+
+
+p2 <- df %>% ggplot(aes(x=bwght, y = faminc, color = factor(male))) + 
+       geom_point() + facet_wrap(~parity, ncol = 3)
+
+
+p1/p2  
+```
+
+
+
 
 

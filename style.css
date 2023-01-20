@@ -1,0 +1,25 @@
+
+#TOC {
+  position: fixed;
+  left: 30px;
+  width: 400px;
+  max-width:120%;
+  overflow:auto;
+}
+
+h1.title{
+  color: navy;
+}
+
+h1 {
+  color: blue;
+}
+
+h2 {
+  color: green;
+}
+
+h3 {
+  color: orange;
+}
+
