@@ -60,11 +60,15 @@ $$\mathbb{A}\vec{x}=\vec{b}$$
 $$\mathbb{A}^{-1}\vec{b}=\vec{x}$$
 
 ```{r}
-r1 <- c(0,1,-4)
-r2 <- c(2,-3,2)
-r3 <- c(5,-8,9)
-A <- rbind(r1,r2,r3)
+r1 <- c(0,1,-4,5)
+r2 <- c(2,-3,2,7)
+r3 <- c(5,-8,9,10)
+r4 <- c(15,-18,19,10)
+A <- rbind(r1,r2,r3,r4)
 print(A)
+
+Rank(A)
+
 print(rref(A))
 ```
 - Above matrix is invertible matrix based on `rref()`
@@ -114,13 +118,14 @@ inv(B)
 
 ```{r}
 print(A)
+Rank(A)
 
-b <- c(1,5,9)
+b <- c(1.2,5.23,-9)
 
 Rank(A)
 
 H <- cbind(A,b)
-Rank(A)
+Rank(H)
 
 rref(A)
 
@@ -146,9 +151,22 @@ print(A)
 dim(A)
 Rank(A)
 
-rref(t(A))
+#selecting random combiantion
+x <- c(1,2,3,4,5,6,7)
+
+b <- A%*%x
+b
+
+#getting only the basis vectors
+B <- A[,c(1,2,3,5)]
+x_B <- inv(B)%*%b
+
+B%*%x_B
+
+#another problem
 
 rref(A)
+
 B <- A[,c(1,2,3,5)]
 Rank(B)
 dim(B)
