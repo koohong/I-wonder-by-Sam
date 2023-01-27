@@ -9,7 +9,7 @@ output: pdf_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r}
+```{r message=FALSE}
 library(far)
 library(MASS)
 library(pracma)
@@ -163,12 +163,115 @@ B%*%x_B
 
 ```
 
+# How to find basis of fundamental four subspaces
+
+```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE}
+knitr::include_graphics("fig/7.JPG")
+```
+
+```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE}
+knitr::include_graphics("fig/8.JPG")
+```
+
+```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE}
+knitr::include_graphics("fig/9.JPG")
+```
+  
+  
+```{r}
+r1 <- matrix(c(1.1,1.1,3.3,1.1), nrow =1)
+r2 <- matrix(c(-1.2,3.3,5.4,7.8), nrow =1)
+r3 <- matrix(c(1.3,2.2,5.7,3.1), nrow =1)
+A <- rbind(r1,r2,r3)
+print(A)
+
+print(rref(A))
+Rank(A)
+
+B <- A[,c(1,2)]
+print(B)
+
+D <- A[,-c(1,2)]
+print(D)
+
+GB <- t(B)%*%B
+print(GB)
+
+print(-inv(GB)%*%t(B)%*%D)
+I <- diag(2)
+print(I)
+
+print(rbind(-inv(GB)%*%(t(B)%*%D),I))
+
+N <- rbind(-inv(GB)%*%(t(B)%*%D),I)
+print(round(A%*%N,2))
+```
+
+
+# Projection Matrix (preview)
+
+$$\mathbb{I} - \mathbb{P} = \mathbb{P}^{\perp}$$
+
+```{r}
+r1 <- matrix(c(1.1,1.1,3.3,1.1), nrow =1)
+r2 <- matrix(c(-1.2,3.3,5.4,7.8), nrow =1)
+r3 <- matrix(c(1.3,2.2,5.7,3.1), nrow =1)
+A <- rbind(r1,r2,r3)
+print(A)
+Rank(A)
+rref(A)
+
+b <- A[,c(1)] + A[,c(2)] + c(2.2,2.1,0)
+b
+
+B <- A[,c(1,2)]
+
+Ab <- cbind(B,b)
+
+Rank(Ab)
+```
+
+$$\begin{aligned}
+\mathbb{B}\vec{x}_b + \mathbb{B}^{\perp}\vec{x}_b^{\perp}&=\vec{b}\\
+\mathbb{B}^T\mathbb{B}\vec{x}_b &= \mathbb{B}^T\vec{b}\\
+(\mathbb{B}^T\mathbb{B})^{-1}\mathbb{B}^T\mathbb{B}\vec{x}_b &= (\mathbb{B}^T\mathbb{B})^{-1}\mathbb{B}^T\vec{b}\\
+\vec{x}_b &= (\mathbb{B}^T\mathbb{B})^{-1}\mathbb{B}^T\vec{b}
+\end{aligned}$$
+
+- this is projection matrix
+
+$$\mathbb{P}=\mathbb{B}(\mathbb{B}^T\mathbb{B})^{-1}\mathbb{B}^T$$
+
+```{r}
+print(B)
+print(b)
+
+P <- 
+
+x_B <- inv(t(B)%*%B)%*%t(B)%*%b
+
+P<- B%*%inv(t(B)%*%B)%*%t(B)
+
+#the best you can do within C(A)
+estimate <- B%*%x_B
+
+#this is residual not error 
+residual <- b-B%*%inv(t(B)%*%B)%*%t(B)%*%b
+
+#b
+estimate + residual
+
+estimate
+P%*%b
+
+# breaking it down
+P_ortho <- diag(3)-P
+P%*%b + P_ortho%*%b
+b
+```
 
 
 
-  
-  
-  
   
   
   

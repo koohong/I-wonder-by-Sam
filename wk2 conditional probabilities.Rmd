@@ -250,8 +250,12 @@ v <- c(3,4)
 u <- c(5,-12)
 
 p <- v%*%u/(t(u)%*%u)
-
 p
+
+#using Norm()
+v%*%u/(Norm(u)^2)
+
+
 ```
 
 ## example 2

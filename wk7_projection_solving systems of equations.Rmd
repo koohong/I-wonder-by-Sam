@@ -549,3 +549,5 @@ print(T%*%b0)
   - basis that are orthogonal, but not normal
   - basis that are **orthonormal**
 and add the projected vector.
+
+[Good example to check out](https://cran.r-project.org/web/packages/matlib/vignettes/gramreg.html)
