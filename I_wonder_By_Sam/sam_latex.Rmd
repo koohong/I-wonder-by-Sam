@@ -1,0 +1,76 @@
+---
+title: "Untitled"
+author: "Bill Chung"
+date: '2022-10-11'
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# 4.2 hat map
+
+$$\vec{b} \notin \text{C}(\mathbb{A})$$
+
+$$\begin{aligned}
+\mathbb{A}\vec{x} &= \vec{b}\\
+\mathbb{B}\vec{x}_B + \mathbb{D}\vec{x}_D &= \vec{b}\\
+\mathbb{B}\vec{x}_B + \mathbb{D}\vec{0} &= \vec{b}\\
+\mathbb{B}^T\mathbb{B}\vec{x}_B  &= \mathbb{B}^T\vec{b}\\
+\vec{x}_B  &= (\mathbb{B}^T\mathbb{B})^{-1}\mathbb{B}^T\vec{b}\\
+\end{aligned}$$
+
+$$\vec{x} = \begin{bmatrix}
+\vec{x}_B \\
+\vec{0} \\
+\end{bmatrix}$$
+
+
+$$\mathbb{A}\vec{x} =\hat{\vec{b}}$$
+
+# 4.3
+
+$$\begin{aligned}
+\mathbb{A}\vec{x} &= \vec{b}\\
+\mathbb{B}\vec{x}_B + \mathbb{D}\vec{x}_D &= \vec{b}\\
+\mathbb{B}\vec{x}_B + \mathbb{D}\vec{0} &= \vec{b}\\
+\mathbb{B}^T\mathbb{B}\vec{x}_B  &= \mathbb{B}^T\vec{b}\\
+\vec{x}_B  &= (\mathbb{B}^T\mathbb{B})^{-1}\mathbb{B}^T\vec{b}\\
+\end{aligned}$$
+
+$$\vec{x}_0 = \begin{bmatrix}
+\vec{x}_B \\
+\vec{0} \\
+\end{bmatrix}$$
+
+$$\mathbb{A}\vec{x}_0 =\vec{b}$$
+
+
+$$\begin{aligned}
+\mathbb{A}\vec{x}_N &= \vec{0}\\
+\mathbb{B}\vec{x}_B + \mathbb{D}\vec{x}_D &= \vec{0}\\
+\mathbb{B}\vec{x}_B &=  =\mathbb{D}\vec{x}_D \\
+\mathbb{B}^T\mathbb{B}\vec{x}_B &=-\mathbb{B}^T\mathbb{D}\vec{x}_D \\
+\mathbb{G}_B\vec{x}_B &=-\mathbb{B}^T\mathbb{D}\vec{x}_D \\
+\vec{x}_B &= -(\mathbb{G}_B)^{-1}\mathbb{B}^T\mathbb{D}\vec{x}_D \\
+\end{aligned}$$
+
+$$\vec{x}_N = \begin{bmatrix}
+\vec{x}_B \\
+\vec{x}_D \\  
+\end{bmatrix} = \begin{bmatrix}
+-(\mathbb{G}_B)^{-1}\mathbb{B}^T\mathbb{D}\vec{x}_D \\
+\vec{x}_D \\  
+\end{bmatrix} \\
+= \begin{bmatrix}
+-(\mathbb{G}_B)^{-1}\mathbb{B}^T\mathbb{D} \\
+\mathbb{I}  
+\end{bmatrix}\cdot \vec{x}_D\\= N(\mathbb{A})\cdot \vec{x}_D$$
+
+
+
+$$\vec{x} = N(\mathbb{A}) \vec{x}_D + \vec{x}_0$$
+
+
+$$\mathbb{A}\vec{x} = \mathbb{A}\big{[}N(\mathbb{A})\vec{x}_D + \vec{x}_0\big{]}=\vec{b}$$

@@ -1,0 +1,1290 @@
+---
+title: "I wonder By Sam"
+author: "Bill Chung"
+date: '\today'
+output: pdf_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(pracma)
+library(MASS)
+library(far)
+```
+
+
+## Introduction
+
+```{r}
+print("hello")
+```
+
+## Chapter 1
+
+### Section 1.1
+```{r}
+v1 <- matrix(c(1,-1), nrow=2)
+print(v1)
+```
+
+
+```{r}
+v1 <- matrix(c(3,4), nrow=2)
+print(v1)
+
+r1 <- matrix(c(1,-1,3), nrow=1)
+print(r1)
+```
+
+
+```{r}
+v1 <- matrix(c(3,4),nrow=2)
+print(v1)
+
+v2<-matrix(c(-1.5,2),nrow=2)
+print(-2*v2)
+```
+
+
+### Section 1.2
+
+```{r}
+v1 <- matrix(c(8,6),nrow=2)
+v2 <- matrix(c(4,0),nrow=2)
+
+print(t(v1)%*%v2)
+```
+
+### Section 1.3
+
+```{r}
+v1 <- matrix(c(8,6),nrow=2)
+print(v1)
+Norm(v1)
+```
+
+```{r}
+v2 <- matrix(c(4,0),nrow=2)
+print(v2)
+```
+
+```{r}
+print(t(v1)%*%v2/(t(v1)%*%v1))
+
+print(t(v1)%*%v2/Norm(v1)^2)
+
+```
+
+```{r}
+print(t(v1)%*%v2/(t(v2)%*%v2))
+
+print(t(v1)%*%v2/Norm(v2)^2)
+```
+
+\break
+
+# Chapter 2
+
+## Section 2.1
+
+```{r}
+v1 <- matrix(c(1,-1), nrow =2)
+v2 <- matrix(c(2,1), nrow =2)
+A <- cbind(v1,v2)
+print(A)
+```
+
+```{r}
+dim(A)
+```
+
+```{r}
+b <- matrix(c(1,1), nrow =2)
+A%*%b
+```
+
+
+```{r}
+v1 <- matrix(c(1,1), nrow =2)
+v2 <- matrix(c(1,-1), nrow =2)
+v3 <- matrix(c(1,3), nrow =2)
+
+A <- cbind(v1,v2,v3)
+print(A)
+
+x <- matrix(c(2,3,1.5),nrow=3)
+print(x)
+
+A%*%x
+```
+
+
+## Section 2.2
+
+```{r}
+v1 <- matrix(c(1,-1), nrow =2)
+v2 <- matrix(c(2,-1), nrow =2)
+v3 <- matrix(c(-2,-3), nrow =2)
+
+A <- cbind(v1,v2,v3)
+print(A)
+```
+
+```{r}
+Rank(A)
+```
+
+```{r}
+print(rref(A))
+```
+
+### problem 1
+
+```{r}
+r1 <- matrix(c(-3,1,-1,1,4), nrow =1)
+r2 <- matrix(c(1,-2,2,3,1), nrow =1)
+r3 <- matrix(c(-3,1,-1,1,4), nrow =1)
+A <- rbind(r1,r2,r3)
+print(A)
+rref(A)
+```
+
+### problem 2
+
+```{r}
+r1 <- matrix(c(-3,-6,-1,-2,4), nrow =1)
+r2 <- matrix(c(1,2,2,4,1), nrow =1)
+r3 <- matrix(c(2,4,5,10,7), nrow =1)
+A <- rbind(r1,r2,r3)
+print(A)
+rref(A)
+```
+
+### problem 3
+
+```{r}
+r1 <- matrix(c(-3,-1,4), nrow =1)
+r2 <- matrix(c(1,2,1), nrow =1)
+r3 <- matrix(c(2,5,7), nrow =1)
+A <- rbind(r1,r2,r3)
+print(A)
+rref(A)
+```
+
+### problem 4
+
+```{r}
+r1 <- matrix(c(-3,-1), nrow =1)
+r2 <- matrix(c(1,2), nrow =1)
+r3 <- matrix(c(2,5), nrow =1)
+A <- rbind(r1,r2,r3)
+print(A)
+rref(A)
+```
+
+### problem 5
+
+```{r}
+r1 <- matrix(c(-3), nrow =1)
+r2 <- matrix(c(1), nrow =1)
+r3 <- matrix(c(2), nrow =1)
+A <- rbind(r1,r2,r3)
+print(A)
+rref(A)
+```
+
+
+## Section 2.3
+
+```{r}
+v1 <- matrix(c(1,-1), nrow =2)
+v2 <- matrix(c(2,-1), nrow =2)
+v3 <- matrix(c(-2,-3), nrow =2)
+
+A <- cbind(v1,v2,v3)
+print(A)
+```
+
+```{r}
+rref(A)
+```
+
+```{r}
+B <- A[,c(1,2)]
+print(B)
+```
+
+```{r}
+D <- A[,-c(1,2)]
+print(D)
+```
+
+```{r}
+x <- matrix(c(2,3,7), nrow=3)
+print(x)
+```
+
+```{r}
+xB <- matrix(c(2,3), nrow=2)
+print(xB)
+```
+
+```{r}
+xD <- matrix(c(7), nrow=1)
+print(xD)
+```
+
+```{r}
+print(B%*%xB + D%*%xD)
+```
+
+```{r}
+b <- A%*%x
+print(b)
+```
+
+### problem 1
+
+```{r}
+v1 <- matrix(c(1,-1), nrow =2)
+v2 <- matrix(c(2,-1), nrow =2)
+v3 <- matrix(c(-2,-3), nrow =2)
+
+A <- cbind(v1,v2,v3)
+print(A)
+
+x<- matrix(c(2,3,7), nrow =3)
+print(x)
+
+b <- A%*%x
+print(b)
+print(rref(A))
+
+B<- A[,c(1,2)]
+print(B)
+
+D<- A[,-c(1,2)]
+print(D)
+
+```
+
+### problem 2
+
+
+```{r}
+r1 <- matrix(c(-3,1,-1,1,4), nrow =1)
+r2 <- matrix(c(1,-2,2,3,1), nrow =1)
+r3 <- matrix(c(-2,-4,5,8,7), nrow =1)
+A <- rbind(r1,r2,r3)
+print(A)
+
+x<- matrix(c(2,3,7,-1,4),nrow=5)
+
+b <- A%*%x
+print(b)
+rref(A)
+```
+
+```{r}
+B <- A[,c(1,2,3)]
+D <- A[,-c(1,2,3)]
+xB <- matrix(c(2,3,7),nrow=3)
+xD <- matrix(c(-1,4),nrow=2)
+print(B%*%xB + D%*%xD)
+```
+
+### problem 3
+
+
+```{r}
+r1 <- matrix(c(-3,-6,-1,-2,4), nrow =1)
+r2 <- matrix(c(1,2,2,4,1), nrow =1)
+r3 <- matrix(c(2,4,5,10,7), nrow =1)
+A <- rbind(r1,r2,r3)
+print(A)
+
+x<- matrix(c(2,4,7,3,1),nrow=5)
+
+b <- A%*%x
+print(b)
+rref(A)
+```
+
+```{r}
+B <- A[,c(1,3,5)]
+D <- A[,-c(1,3,5)]
+xB <- matrix(c(2,7,1),nrow=3)
+xD <- matrix(c(4,3),nrow=2)
+print(B%*%xB + D%*%xD)
+```
+
+## Section 2.4
+
+```{r}
+r1 <- matrix(c(-1,1,1,3,-1), nrow =1)
+r2 <- matrix(c(3,-2,-1,-7,5), nrow =1)
+r3 <- matrix(c(2,1,4,0,8), nrow =1)
+A <- rbind(r1,r2,r3)
+print(A)
+```
+
+
+```{r}
+r1 <- matrix(c(1,3,2,-4,3), nrow =1)
+r2 <- matrix(c(1,-2,3,-1,2), nrow =1)
+F <- rbind(r1,r2)
+print(F)
+```
+
+```{r}
+A%*%t(F)
+```
+
+### Problem 1
+
+```{r}
+r1 <- matrix(c(-1,1,1,3,-1), nrow =1)
+r2 <- matrix(c(3,-2,-1,-7,5), nrow =1)
+r3 <- matrix(c(2,1,4,0,8), nrow =1)
+A <- rbind(r1,r2,r3)
+print(A)
+Rank(A)
+
+GA <- t(A)%*%A
+print(GA)
+inv(GA)
+```
+
+
+### Problem 2
+
+```{r}
+r1 <- matrix(c(-1,1), nrow =1)
+r2 <- matrix(c(3,-2), nrow =1)
+r3 <- matrix(c(2,1), nrow =1)
+A <- rbind(r1,r2,r3)
+print(A)
+Rank(A)
+
+GA <- t(A)%*%A
+print(GA)
+print(inv(GA))
+print(round(inv(GA),2))
+```
+
+### Problem 3
+
+```{r}
+r1 <- matrix(c(-1,1,1), nrow =1)
+r2 <- matrix(c(3,-2,-1), nrow =1)
+r3 <- matrix(c(2,1,4), nrow =1)
+A <- rbind(r1,r2,r3)
+print(A)
+Rank(A)
+
+GA <- t(A)%*%A
+print(GA)
+print(GA)
+inv(GA)
+```
+
+
+## Section 2.5
+
+```{r}
+diag(c(-4,0,1))
+```
+
+
+```{r}
+r1 <- matrix(c(2,4,2), nrow =1)
+r2 <- matrix(c(0,3,1), nrow =1)
+r3 <- matrix(c(2,5,2), nrow =1)
+P <- rbind(r1,r2,r3)
+print(P)
+print(inv(P))
+print(inv(P)%*%P)
+```
+
+
+```{r}
+r1 <- matrix(c(2,0), nrow =1)
+r2 <- matrix(c(0,1), nrow =1)
+r3 <- matrix(c(2,1), nrow =1)
+B <- rbind(r1,r2,r3)
+print(B)
+GB <- t(B)%*%B
+print(GB)
+print(round(inv(GB),2))
+print(inv(GB)%*%GB)
+```
+
+### Problem 1
+
+```{r}
+r1 <- matrix(c(2,0,4,4,2), nrow =1)
+r2 <- matrix(c(0,1,2,3,1), nrow =1)
+r3 <- matrix(c(2,1,3,5,2), nrow =1)
+A <- rbind(r1,r2,r3)
+print(A)
+print(round(rref(A),2))
+
+B <- A[,c(1,2,3)]
+print(B)
+print(round(inv(B)%*%B),2)
+```
+
+
+### Problem 2
+
+```{r}
+v1 <- matrix(c(2,0,2,4,5), nrow =5)
+v2 <- matrix(c(0,1,1,3,4), nrow =5)
+v3 <- matrix(c(4,2,4,7,7), nrow =5)
+A <- cbind(v1,v2,v3)
+print(A)
+Rank(A)
+
+GA <- t(A)%*%A
+print(GA)
+
+print(round(inv(GA)%*%GA),2)
+```
+
+### Problem 3
+
+```{r}
+v1 <- matrix(c(2,0,2), nrow =3)
+v2 <- matrix(c(0,1,1), nrow =3)
+v3 <- matrix(c(4,1,5), nrow =3)
+A <- cbind(v1,v2,v3)
+print(A)
+print(rref(A))
+
+B <- A[,c(1,2)]
+print(B)
+
+GB <- t(B)%*%B
+print(GB)
+
+print(inv(GB)%*%GB)
+```
+
+### Problem 4
+
+```{r}
+v1 <- matrix(c(2,0,2), nrow =3)
+v2 <- matrix(c(0,1,1), nrow =3)
+v3 <- matrix(c(4,2,4), nrow =3)
+A <- cbind(v1,v2,v3)
+print(A)
+print(rref(A))
+I <- inv(A)%*%A
+print(I)
+```
+
+### Problem 5
+
+```{r}
+v1 <- matrix(c(2,0,2), nrow =3)
+A <- v1
+
+GA <- t(A)%*%A
+print(GA)
+print(round(inv(GA)%*%GA),2)
+```
+
+
+\break
+
+# Chapter 3
+
+## Section 3.1
+
+```{r}
+A <- matrix(c(1,1,1,1,-1,-3), nrow = 2, byrow=T)
+print(A)
+dim(A)
+dim(A)[1]
+dim(A)[2]
+```
+
+## Section 3.3
+
+
+```{r}
+r1 <- matrix(c(1.1,1.1,3.3,1.1), nrow =1)
+r2 <- matrix(c(-1.2,3.3,5.4,7.8), nrow =1)
+r3 <- matrix(c(1.3,2.2,5.7,3.1), nrow =1)
+A <- rbind(r1,r2,r3)
+print(A)
+
+print(rref(A))
+Rank(A)
+
+B <- A[,c(1,2)]
+print(B)
+
+D <- A[,-c(1,2)]
+print(D)
+
+GB <- t(B)%*%B
+print(GB)
+
+print(-inv(GB)%*%t(B)%*%D)
+I <- diag(2)
+print(I)
+
+print(rbind(-inv(GB)%*%(t(B)%*%D),I))
+
+N <- rbind(-inv(GB)%*%(t(B)%*%D),I)
+print(round(A%*%N,2))
+
+```
+
+
+
+```{r}
+print(A)
+AT <- t(A)
+print(AT)
+print(rref(t(A)))
+RA <- AT[,c(1,2)]
+print(RA)
+```
+
+
+## Section 3.5
+
+```{r}
+library(far)
+
+v1 <- matrix(c(1,2,3), nrow =3)
+v2 <- matrix(c(4,5,6), nrow =3)
+v3 <- matrix(c(13,2,-4), nrow =3)
+A <- cbind(v1,v2,v3)
+print(A)
+Rank(A)
+
+OA <- orthonormalization(A)
+print(round(OA,2))
+
+Rank(OA)
+
+Norm(OA[,1])
+
+#between column vectors
+print(round(t(OA[,1])%*%OA[,2],2))
+print(round(t(OA[,1])%*%OA[,3],2))
+
+#between row vectors
+print(round(t(OA[1,])%*%OA[2,],2))
+print(round(t(OA[1,])%*%OA[3,],2))
+```
+
+
+```{r}
+v1 <- matrix(c(1,2,-3), nrow =3)
+v2 <- matrix(c(-4,2,1), nrow =3)
+v3 <- matrix(c(11,2,-11), nrow =3)
+A <- cbind(v1,v2,v3)
+print(A)
+
+print(rref(A))
+
+B <- A[,c(1,2)]
+print(B)
+
+OB <- orthonormalization(B)
+print(round(OB,2))
+```
+
+
+### Problem 1
+
+
+```{r}
+v1 <- matrix(c(1,2,-3), nrow =3)
+v2 <- matrix(c(-4,2,1), nrow =3)
+v3 <- matrix(c(-3,4,-2), nrow =3)
+A <- cbind(v1,v2,v3)
+print(A)
+print(rref(A))
+
+B <- A[,c(1,2)]
+
+OB <- orthonormalization(B)
+print(round(OB,2))
+
+#basis spanning column space of A
+CA <- OB[,c(1,2)]
+print(round(CA,2))
+
+#basis spanning left nullspace of A
+NAT <- OB[,c(3)]
+print(round(NAT,2))
+
+```
+
+### Problem 2
+
+```{r}
+r1 <- matrix(c(1,-4,-3,6,23), nrow =1)
+r2 <- matrix(c(2,2,4,4,-1), nrow =1)
+r3 <- matrix(c(-3,1,-2,-7,-14), nrow =1)
+A <- rbind(r1,r2,r3)
+print(A)
+print(rref(A))
+
+B <- A[,c(1,2)]
+
+OB <- orthonormalization(B)
+print(round(OB,2))
+
+#basis spanning column space of A
+CA <- OB[,c(1,2)]
+print(round(CA,2))
+
+#basis spanning left nullspace of A
+NAT <- OB[,-c(1,2)]
+print(round(NAT,2))
+```
+
+\break 
+
+# Chapter 4
+
+## Section 4.1
+
+```{r}
+v1 <- matrix(c(1,-1,1), nrow =3)
+v2 <- matrix(c(1,3,2), nrow =3)
+v3 <- matrix(c(2,3,4), nrow =3)
+A <- cbind(v1,v2,v3)
+print(A)
+
+Rank(A)
+
+b <- matrix(c(1,4,-4))
+print(b)
+
+Rank(b)
+
+x <-inv(A)%*%b
+print(round(x,2))
+
+print(A%*%x)
+```
+
+
+## Section 4.2
+
+```{r}
+v1 <- matrix(c(1,-1,1), nrow =3)
+v2 <- matrix(c(1,3,2), nrow =3)
+v3 <- matrix(c(3,5,5), nrow =3)
+A <- cbind(v1,v2,v3)
+print(A)
+
+b <- matrix(c(1,4,-4))
+print(b)
+
+Ab <- cbind(A,b)
+
+Rank(A)
+Rank(Ab)
+
+print(rref(A))
+
+B <- A[,c(1,2)]
+GB <- t(B)%*%B
+xB <- inv(GB)%*%t(B)%*%b
+print(round(xB,2))
+
+b_hat <- B%*%xB
+print(round(b_hat,2))
+
+x <- rbind(xB,0)
+print(round(x,2))
+
+print(round(A%*%x,2))
+```
+## Section 4.3
+
+### Problem 1
+
+```{r}
+r1 <- matrix(c(1,1,2,2,3), nrow =1)
+r2 <- matrix(c(-1,3,3,-1,5), nrow =1)
+r3 <- matrix(c(1,2,4,3,5), nrow =1)
+A <- rbind(r1,r2,r3)
+print(A)
+
+b <- matrix(c(1,4,-4))
+print(b)
+
+######################################
+#STEP 1
+######################################
+
+print(rref(A))
+
+Ab <- cbind(A,b)
+print(round(rref(Ab),2))
+
+B<- A[,c(1,2,3)]
+D<- A[,-c(1,2,3)]
+print(B)
+print(D)
+
+
+
+GB <- t(B)%*%B
+print(GB)
+
+xB <- inv(GB)%*%t(B)%*%b
+print(round(xB,2))
+
+x_zero <- rbind(xB[1],xB[2],xB[3],0,0)
+print(round(x_zero,2))
+
+###########################################
+# STEP 2
+###########################################
+N <- rbind(-inv(GB)%*%t(B)%*%D, diag(2))
+print(round(N,0))
+
+# point 1
+x_D <- matrix(c(-3,2),nrow=2)
+print(x_D)
+
+x_1 <- x_zero - N%*%x_D
+print(round(x_1,2))
+
+print(A%*%x_1)
+
+# point 2
+x_D <- matrix(c(1,5),nrow=2)
+print(x_D)
+
+x_2 <- x_zero - N%*%x_D
+print(round(x_2,2))
+
+print(A%*%x_2)
+```
+
+
+\break 
+
+# Chapter 5
+
+## Section 5.1
+
+
+```{r}
+r1 <- matrix(c(-2,4,2), nrow =1)
+r2 <- matrix(c(-4.8,8.4,1.6), nrow =1)
+r3 <- matrix(c(-4.8,2.4,5.6), nrow =1)
+A <- rbind(r1,r2,r3)
+print(A)
+
+eigen(A)
+
+eigen(A)$values
+round(eigen(A)$vectors,2)
+```
+
+### Problem 1
+
+```{r}
+r1 <- matrix(c(1,4,7), nrow =1)
+r2 <- matrix(c(2,5,8), nrow =1)
+r3 <- matrix(c(3,6,9), nrow =1)
+A <- rbind(r1,r2,r3)
+print(A)
+
+Rank(A)
+
+L <- diag(eigen(A)$values)
+print(round(L,2))
+
+E <- eigen(A)$vectors
+print(round(E,2))
+
+Rank(E)
+
+```
+
+
+### Problem 2
+
+```{r}
+r1 <- matrix(c(1,4,2), nrow =1)
+r2 <- matrix(c(5,5,8), nrow =1)
+r3 <- matrix(c(-3,69,9), nrow =1)
+A <- rbind(r1,r2,r3)
+print(A)
+
+Rank(A)
+
+L <- diag(eigen(A)$values)
+print(round(L,2))
+
+E <- eigen(A)$vectors
+print(round(E,2))
+
+Rank(E)
+```
+
+
+### Problem 3
+
+```{r}
+r1 <- matrix(c(1,2,2), nrow =1)
+r2 <- matrix(c(2,4,8), nrow =1)
+r3 <- matrix(c(3,6,9), nrow =1)
+A <- rbind(r1,r2,r3)
+print(A)
+
+Rank(A)
+
+L <- diag(eigen(A)$values)
+print(round(L,2))
+
+E <- eigen(A)$vectors
+print(round(E,2))
+
+Rank(E)
+```
+
+### Problem 4
+
+```{r}
+r1 <- matrix(c(0.8,-0.6,0), nrow =1)
+r2 <- matrix(c(0.6,0.8,0), nrow =1)
+r3 <- matrix(c(3,3,1), nrow =1)
+A <- rbind(r1,r2,r3)
+print(A)
+
+Rank(A)
+
+L <- diag(eigen(A)$values)
+print(round(L,2))
+
+E <- eigen(A)$vectors
+print(round(E,2))
+
+
+```
+
+
+
+## Section 5.2
+
+```{r}
+r1 <- matrix(c(-2,4,2), nrow =1)
+r2 <- matrix(c(-4.8,8.4,1.6), nrow =1)
+r3 <- matrix(c(-4.8,2.4,5.6), nrow =1)
+A <- rbind(r1,r2,r3)
+print(A)
+
+Rank(A)
+
+Q<- A - diag(eigen(A)$values[1],3)
+
+print(Q)
+
+Rank(Q)
+```
+
+
+## Section 5.3
+
+```{r}
+r1 <- matrix(c(1,4,2), nrow =1)
+r2 <- matrix(c(5,5,8), nrow =1)
+r3 <- matrix(c(-3,69,9), nrow =1)
+A <- rbind(r1,r2,r3)
+print(A)
+
+L <- diag(eigen(A)$values)
+print(round(L,2))
+
+E <- eigen(A)$vectors
+print(round(E,2))
+
+```
+
+
+## Section 5.4
+
+### Problem 1
+
+```{r}
+r1 <- matrix(c(1,2,2), nrow =1)
+r2 <- matrix(c(2,4,8), nrow =1)
+r3 <- matrix(c(3,6,9), nrow =1)
+A <- rbind(r1,r2,r3)
+print(A)
+
+E <- eigen(A)$vectors
+print(round(E,2))
+
+x<- matrix(c(2,4,8),nrow=3)
+print(x)
+
+h<- inv(E)%*%x
+
+h[1]%*%E[,1] + h[2]%*%E[,2] + h[3]%*%E[,3]
+```
+
+
+### Problem 2
+
+```{r}
+L <- diag(c(1.2,0.7))
+e1 <- c(2,1)
+e2 <- c(1,0)
+E <- cbind(e1,e2)
+A <- E%*%L%*%inv(E)
+print(A)
+
+```
+
+## Section 5.6
+
+### Problem 1
+
+```{r}
+r1 <- matrix(c(1,2,2), nrow =1)
+r2 <- matrix(c(2,4,8), nrow =1)
+r3 <- matrix(c(3,6,9), nrow =1)
+A <- rbind(r1,r2,r3)
+print(A)
+
+Rank(A)
+
+GA <- t(A)%*%A
+print(GA)
+
+L <- round(diag(eigen(GA)$values,3),1)
+print(L)
+
+E <- round(eigen(GA)$vectors,3)
+E
+
+t(E)
+
+round(inv(E),3)
+```
+
+### Problem 2
+
+
+```{r}
+r1 <- matrix(c(1,2,-1), nrow =1)
+r2 <- matrix(c(2,2,3), nrow =1)
+r3 <- matrix(c(0,3,2), nrow =1)
+A <- rbind(r1,r2,r3)
+print(A)
+
+Rank(A)
+
+GA <- t(A)%*%A
+print(GA)
+
+L <- round(diag(eigen(GA)$values,3),1)
+print(L)
+
+E <- round(eigen(GA)$vectors,3)
+E
+
+t(E)
+
+round(inv(E),3)
+```
+
+## Section 5.6
+
+### Problem 1
+
+```{r}
+M <- matrix(c(0.7,0.25,0.3,0.75), nrow=2, byrow = T)
+
+print(M)
+
+E <- eigen(M)$vectors
+print(round(eigen(M)$vectors,2))
+
+print(eigen(M)$values)
+
+x0 <- matrix(c(0.6,0.4),nrow=2)
+print(x0)  
+
+p1 <- E[,1]/sum(E[,1])
+print(round(p1,2))
+
+```
+
+
+## Section 5.7
+
+
+```{r}
+Q <- matrix(c(0,0.5,0,0.5,0,0.5,0,0.5,0), nrow = 3, byrow =T)
+print(Q)
+
+N <- inv(diag(3)-Q)
+print(N)
+
+R <- matrix(c(0.5,0,0,0,0,0.5), nrow=3, byrow = T)
+print(R)
+```
+
+### Problem 1
+
+```{r}
+N <- inv(diag(3)-Q)
+print(N)
+```
+
+### Problem 2
+
+```{r}
+c1 <- matrix(c(1,1,1), nrow=3)
+print(N%*%c1)
+```
+
+### Problem 3
+
+```{r}
+print(N%*%R)
+```
+
+\break
+
+# Chapter 6
+
+## Section 6.1
+
+```{r}
+A <- matrix(c(1,2,-2,-1,-1,-3), 
+            nrow=2, byrow = TRUE)
+
+print(A)
+Rank(A)
+
+S <- diag(svd(A)$d)
+print(round(S,2))
+
+
+U <- svd(A)$u
+print(round(U,2))
+
+print(round((svd(A)$u)%*%S),2)
+
+V <- svd(A)$v
+print(round(V,2))
+
+print(round(A%*%(svd(A)$v)),2)
+
+U%*%S%*%t(V)
+```
+
+
+### Problem 1
+
+```{r}
+A <- matrix(c(1,1,2,1,-1,3), 
+            nrow=2, byrow = TRUE)
+
+print(A)
+
+S <- diag(svd(A)$d)
+print(round(S,2))
+
+U <- svd(A)$u
+print(round(U,2))
+
+V <- svd(A)$v
+print(round(V,2))
+
+print(round(A%*%(svd(A)$v),0))
+
+print(round(svd(A)$u%*%S,0))
+
+print(U%*%S%*%t(V))
+```
+
+### Problem 2
+
+```{r}
+A <- matrix(c(1,4,7,1,1,9), 
+            nrow=3, byrow = TRUE)
+
+print(A)
+
+S <- diag(svd(A)$d)
+print(round(S,2))
+
+
+U <- svd(A)$u
+print(round(U,2))
+
+V <- svd(A)$v
+print(round(V,2))
+
+print(U%*%S%*%t(V))
+
+print(U%*%S%*%inv(V))
+```
+
+## Section 6.2
+
+### Problem 1
+
+```{r}
+A <- matrix(c(1,2,-2,-1,-1,-3), 
+            nrow=2, byrow = TRUE)
+
+print(A)
+
+S <- diag(svd(A)$d)
+print(round(S,2))
+
+
+U <- svd(A)$u
+print(round(U,2))
+
+V <- svd(A)$v
+print(round(V,2))
+
+
+A_inv <- V%*%inv(S)%*%inv(U)
+print(round(A_inv,2))
+
+result <- A%*%A_inv
+print(round(result,2))
+
+```
+
+
+### Problem 2
+
+```{r}
+A <- matrix(c(1,1,2,1,-1,3), 
+            nrow=2, byrow = TRUE)
+
+print(A)
+
+S <- diag(svd(A)$d)
+print(round(S,2))
+
+
+U <- svd(A)$u
+print(round(U,2))
+
+V <- svd(A)$v
+print(round(V,2))
+
+
+A_inv <- V%*%inv(S)%*%inv(U)
+print(round(A_inv,2))
+
+result <- A%*%A_inv
+print(round(result,2))
+
+```
+
+## Section 6.3
+
+```{r}
+v1 <- matrix(c(5,2),nrow=2)
+v2 <- matrix(c(10,0),nrow=2)
+v3 <- matrix(c(0,1),nrow=2)
+
+#project onto v2
+print(t(v1)%*%v2/(t(v2)%*%v2))
+
+
+#project onto v2
+print(t(v1)%*%v3/(t(v3)%*%v3))
+```
+
+- How to normalize a vector
+
+```{r}
+#how to normalize v2
+nv2 <- v2 / sqrt(sum(v2^2)) 
+print(nv2)
+print(Norm(nv2))
+
+#how to normalize v2
+nv3 <- v3 / sqrt(sum(v3^2)) 
+print(nv3)
+print(Norm(nv3))
+
+```
+
+- Projecting onto normalized vector
+
+```{r}
+
+#project onto v2
+print(t(v1)%*%nv2/(t(nv2)%*%nv2))
+
+
+#project onto v2
+print(t(v1)%*%nv3/(t(nv3)%*%nv3))
+```
+
+- orthogonal matrix and a vector multiplication
+
+```{r}
+A <- matrix(c(1,2,3,-1,3,2), nrow = 3)
+A
+Rank(A)
+
+OA <- orthonormalization(A)
+OA
+
+x <- matrix(c(2,1,5),nrow = 3)
+x
+
+b <- OA%*%x
+b
+
+OA%*%x
+
+t(OA)%*%b
+
+t(b)%*%OA
+
+```
+
+- principal component analysis 
+
+```{r}
+A <- matrix(c(1,2,3,4,5,
+              0.2,0.8,0.7,1.1,1.7), 
+              nrow=2, byrow = TRUE)
+
+print(A)
+
+S <- diag(svd(A)$d)
+print(round(S,2))
+
+
+U <- svd(A)$u
+print(round(U,2))
+
+V <- svd(A)$v
+print(round(V,2))
+
+T1 <- t(A)%*%U
+print(round(T1,2))
+
+
+
+```
+
