@@ -42,6 +42,8 @@ v1 <- matrix(c(3,4),nrow=2)
 print(v1)
 
 v2<-matrix(c(-1.5,2),nrow=2)
+print(v2)
+
 print(-2*v2)
 ```
 
@@ -50,6 +52,12 @@ print(-2*v2)
 
 ```{r}
 v1 <- matrix(c(8,6),nrow=2)
+print(v1)
+
+print(t(v1))
+```
+
+```{r}
 v2 <- matrix(c(4,0),nrow=2)
 
 print(t(v1)%*%v2)
@@ -75,11 +83,6 @@ print(t(v1)%*%v2/Norm(v1)^2)
 
 ```
 
-```{r}
-print(t(v1)%*%v2/(t(v2)%*%v2))
-
-print(t(v1)%*%v2/Norm(v2)^2)
-```
 
 \break
 
@@ -98,11 +101,8 @@ print(A)
 dim(A)
 ```
 
-```{r}
-b <- matrix(c(1,1), nrow =2)
-A%*%b
-```
 
+## Section 2.2
 
 ```{r}
 v1 <- matrix(c(1,1), nrow =2)
@@ -118,23 +118,25 @@ print(x)
 A%*%x
 ```
 
+## Section 2.3
 
-## Section 2.2
+```{r}
+v1 <- matrix(c(1,-1), nrow =2)
+v2 <- matrix(c(2,-1), nrow =2)
+v3 <- matrix(c(-2,-1), nrow =2)
+A <- cbind(v1,v2,v3)
+print(A)
+
+Rank(A)
+```
 
 ```{r}
 v1 <- matrix(c(1,-1), nrow =2)
 v2 <- matrix(c(2,-1), nrow =2)
 v3 <- matrix(c(-2,-3), nrow =2)
-
 A <- cbind(v1,v2,v3)
 print(A)
-```
 
-```{r}
-Rank(A)
-```
-
-```{r}
 print(rref(A))
 ```
 
@@ -179,7 +181,7 @@ r2 <- matrix(c(1,2), nrow =1)
 r3 <- matrix(c(2,5), nrow =1)
 A <- rbind(r1,r2,r3)
 print(A)
-rref(A)
+print(rref(A))
 ```
 
 ### problem 5
@@ -235,13 +237,15 @@ print(xD)
 ```
 
 ```{r}
-print(B%*%xB + D%*%xD)
-```
-
-```{r}
 b <- A%*%x
 print(b)
 ```
+
+```{r}
+print(B%*%xB + D%*%xD)
+```
+
+
 
 ### problem 1
 
@@ -274,7 +278,7 @@ print(D)
 ```{r}
 r1 <- matrix(c(-3,1,-1,1,4), nrow =1)
 r2 <- matrix(c(1,-2,2,3,1), nrow =1)
-r3 <- matrix(c(-2,-4,5,8,7), nrow =1)
+r3 <- matrix(c(2,-4,5,8,7), nrow =1)
 A <- rbind(r1,r2,r3)
 print(A)
 
