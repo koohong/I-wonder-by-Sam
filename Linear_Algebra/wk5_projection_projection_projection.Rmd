@@ -16,6 +16,131 @@ library(pracma)
 library(expm)
 ```
 
+# Example
+
+```{r}
+v1 <- c(1,2,3)
+v2 <- c(1,0,-1)
+v3 <- c(1,0,1)
+
+A <- cbind(v1,v2,v3)
+print(A)
+
+b <- c(3,2,5)
+
+Ab <- cbind(A,b)
+print(Ab)  
+
+#step 1
+Rank(A)
+Rank(Ab)
+
+#step 2
+x <- inv(A)%*%b
+
+A%*%x
+```
+
+```{r}
+v1 <- c(1,2,5,7,6)
+v2 <- c(10,5,0,2,3)
+v3 <- c(-1,0.2,100,-4,7)
+
+A <- cbind(v1,v2,v3)
+print(A)
+
+b <- c(3,4,-300,0.5,10)
+
+Ab <- cbind(A,b)
+
+#step 1
+Rank(A)
+Rank(Ab)
+
+#find something in my column space A that is close to b
+G <- t(A)%*%A #gram matrix
+x <- inv(G)%*%t(A)%*%b
+
+b_hat <- A%*%x
+
+
+P <- A%*%inv(G)%*%t(A)
+b_hat <-P%*%b
+
+N <- diag(5) - P
+
+residual <- N%*%b
+b
+
+b_hat + residual
+
+round(t(b_hat)%*%residual,0)
+```
+
+```{r}
+c1 <- c(1,2,3)
+c2 <- c(1,2,-3)
+c3 <- c(-1,2,3)
+c4 <- c(1,-2.1,3.01)
+c5 <- c(1,2,0.03)
+
+A <- cbind(c1,c2,c3,c4,c5)
+
+print(A)
+Rank(A)
+
+b <- c(4,3,5)
+
+#step divide A into B and D
+rref(A)
+
+B <- A[,c(1,2,3)]
+B
+
+G <- t(B)%*%B
+
+D <- A[,-c(1,2,3)]
+D
+
+x_B <- inv(G)%*%t(B)%*%b
+
+B%*%x_B
+
+x <-rbind(x_B,0,0)
+x
+
+A%*%x
+```
+
+
+```{r}
+A <- matrix(rnorm(30), nrow=10)
+Rank(A)
+class(A)
+A
+
+b <- c(1,2,3,4,5,6,7,8,9,10)
+b
+
+Ab <- cbind(A,b)
+#step compare the rank
+Rank(A)
+Rank(Ab)
+
+#project it
+G <- t(A)%*%A
+
+x <- inv(G)%*%t(A)%*%b
+
+x   
+
+A%*%x
+
+A%*%x
+```
+
+
+
 # CLT
 
 ### Sample Satistics
