@@ -16,7 +16,41 @@ library(pracma)
 library(expm)
 ```
 
-# Test 1 on new project
+# CLT
+
+### Sample Satistics
+
+- page 96
+
+What does the following notation mean?
+
+$$T_{(n)} = h_{(n)}(X_1,X_2,...X_n)$$
+where $h_{(n)}:\mathbb{R}^n \rightarrow \mathbb{R}, \forall n \in \mathbb{n}$
+
+### Convergence in Probability
+
+- see page 99
+
+$$T_{(n)} \xrightarrow p c$$
+
+### Weak Law of large numbers
+
+- see page 100 and read first two lines of page 101
+
+$$\bar{X}_{(n)} \xrightarrow p E[X]$$
+
+### Law of Large Numbers (LLN)
+
+
+$$\lim\limits_{n \rightarrow \infty} \sum_{i=1}^{n}\frac{X_i}{n}=E[X]$$
+
+### CLT
+
+- See page 109
+
+Suppose {$X_1, X_2,..X_n$} is a sequence of iid rv with $\text{E}[X_i]=\mu$ and $\text{V}[X_i] = \sigma^2$.  Then as $n \rightarrow \infty$, random variable $\sqrt{n}(\bar{X}_n - \mu)$ converges in distribution with a normal distribution with mean $0$ and variance $\sigma^2$
+
+$$\sqrt{n}(\bar{X}_n - \mu) \xrightarrow d N(0,\sigma^2)$$
 
 #  More about invertible matrix 
 
@@ -85,6 +119,64 @@ u <- matrix(c(4,2),nrow=2)
 u0 <- matrix(c(16,8),nrow=2)
 ```
 
+# Example
+
+```{r}
+b <- c(1,5,3)
+
+c1 <- c(1,2,3)
+c2 <- c(1,2.1,3.2)
+c3 <- c(0,1,-2)
+
+A <- cbind(c1,c2,c3)
+print(A)
+
+Rank(A)
+
+#get x coordinate
+x <- inv(A)%*%b
+A%*%x
+
+
+```
+
+## example of projection matrix 
+
+```{r}
+b <- c(1,5,3)
+
+c1 <- c(1,2,3)
+c2 <- c(1,2.1,3.2)
+
+A <- cbind(c1,c2)
+print(A)
+
+Ab <- cbind(A,b)
+Rank(A)
+Rank(Ab)
+
+#get x coordinate
+G <- t(A)%*%A
+
+x <- inv(G)%*%t(A)%*%b
+
+b_hat <- A%*%x
+
+#projection matrix to C(A)
+P <- A%*%inv(G)%*%t(A)
+
+b_hat <- P%*%b
+
+residual <- b- b_hat
+print(residual)
+#projection matrix to left nullspace
+N<- diag(3) - P
+N%*%b
+
+```
+
+
+\break
 
 # Orthogonal 
 
