@@ -74,3 +74,5 @@ $$\vec{x} = N(\mathbb{A}) \vec{x}_D + \vec{x}_0$$
 
 
 $$\mathbb{A}\vec{x} = \mathbb{A}\big{[}N(\mathbb{A})\vec{x}_D + \vec{x}_0\big{]}=\vec{b}$$
+
+$$\vec{c}_D^T - (\vec{c}_B^T\mathbb{B}^{-1})\mathbb{D} = 0$$

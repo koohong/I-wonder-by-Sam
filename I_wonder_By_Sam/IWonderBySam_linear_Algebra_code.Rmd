@@ -10,6 +10,8 @@ knitr::opts_chunk$set(echo = TRUE)
 library(pracma)
 library(MASS)
 library(far)
+library(tidyverse)
+library(patchwork)
 ```
 
 
@@ -967,6 +969,92 @@ E <- cbind(e1,e2)
 A <- E%*%L%*%inv(E)
 print(A)
 
+```
+
+### reproducing graph 
+
+```{r}
+#plot of v1
+v1 <- c(1,1)
+
+p0 <- v1
+p1 <- A%*%v1
+p2 <- A%*%A%*%v1
+p3 <- A%*%A%*%A%*%v1
+p4 <- A%*%A%*%A%*%A%*%v1
+p <- as.data.frame(t(cbind(p0, p1,p2,p3,p4)))
+colnames(p) <- c("x","y")
+
+
+f1 <- p %>% ggplot(aes(x=x,y=y)) + 
+            geom_point(color = "lightblue")+
+            xlim(c(-4,4)) + ylim(c(-4,4)) +
+            ggtitle("journey of v1")
+
+f1
+
+#plot of v2
+v2 <- c(1,-0.5)
+
+p0 <- v2
+p1 <- A%*%v2
+p2 <- A%*%A%*%v2
+p3 <- A%*%A%*%A%*%v2
+p4 <- A%*%A%*%A%*%A%*%v2
+p <- as.data.frame(t(cbind(p0,p1,p2,p3,p4)))
+colnames(p) <- c("x","y")
+
+
+f2 <- p %>% ggplot(aes(x=x,y=y)) + 
+            geom_point(color = "purple") +
+            xlim(c(-4,4)) + ylim(c(-4,4))+
+            ggtitle("journey of v2")
+
+f2
+
+#plot of v3
+v3 <- c(-1,-0.5)
+
+p0 <- v3
+p1 <- A%*%v3
+p2 <- A%*%A%*%v3
+p3 <- A%*%A%*%A%*%v3
+p4 <- A%*%A%*%A%*%A%*%v3
+p <- as.data.frame(t(cbind(p0,p1,p2,p3,p4)))
+colnames(p) <- c("x","y")
+
+
+f3 <- p %>% ggplot(aes(x=x,y=y)) + 
+            geom_point(color = "orange") +
+            xlim(c(-4,4)) + ylim(c(-4,4))+
+            ggtitle("journey of v3")
+
+f3
+
+#plot of v4
+
+v4 <- c(-1,1)
+
+p0 <- v4
+p1 <- A%*%v4
+p2 <- A%*%A%*%v4
+p3 <- A%*%A%*%A%*%v4
+p4 <- A%*%A%*%A%*%A%*%v4
+p <- as.data.frame(t(cbind(p0,p1,p2,p3,p4)))
+colnames(p) <- c("x","y")
+
+
+f4 <- p %>% ggplot(aes(x=x,y=y)) + 
+            geom_point(color = "brown") +
+            xlim(c(-4,4)) + ylim(c(-4,4))+
+            ggtitle("journey of v4")
+
+f4
+```
+
+```{r fig.height=11, fig.cap= "journey of vectors"}
+#plotting all together
+(f1|f2)/(f3|f4)  
 ```
 
 ## Section 5.5
