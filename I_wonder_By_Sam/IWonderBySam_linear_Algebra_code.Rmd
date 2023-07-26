@@ -642,18 +642,16 @@ A <- rbind(r1,r2,r3)
 print(A)
 print(rref(A))
 
-B <- A[,c(1,2)]
+B <- A[,c(1,2,5)]
 
 OB <- orthonormalization(B)
 print(round(OB,2))
 
 #basis spanning column space of A
-CA <- OB[,c(1,2)]
+CA <- OB[,c(1,2,3)]
 print(round(CA,2))
 
-#basis spanning left nullspace of A
-NAT <- OB[,-c(1,2)]
-print(round(NAT,2))
+#left nullspace contains only zero 
 ```
 
 \break 
@@ -1102,7 +1100,7 @@ print(GA)
 L <- round(diag(eigen(GA)$values,2),1)
 print(L)
 
-E <- round(eigen(GA)$vectors,2)
+E <- round(eigen(GA)$vectors,3)
 E
 
 round(t(E),2)
