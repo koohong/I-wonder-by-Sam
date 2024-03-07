@@ -1,8 +1,8 @@
 ---
 title: "Linear Algebra"
 author: "Bill Chung"
-date: "`r format(Sys.time(), '%B %d, %Y')`"
-output: pdf_document
+date: "`r Sys.Date()`"
+output: html_document
 ---
 
 ```{r message=FALSE, warning=FALSE, include=FALSE}
@@ -14,6 +14,7 @@ library(far)
 library(MASS)
 library(pracma)
 library(expm)
+library(here)
 ```
 
 # Welcome
@@ -22,79 +23,59 @@ library(expm)
   - Be able to explain the difference between $\epsilon$ and $\hat{\epsilon}$
   - Why $\hat{\epsilon}$ will orthogonal to all the features in your MLR
 
-## Snap shot from wk9
-
-$$\begin{aligned}
-V[\hat{\vec{\beta}}] &= E[(\hat{\vec{\beta}}-\vec{\beta})^2]\\
-\phantom{0}
-&=E[(\hat{\vec{\beta}}-\vec{\beta})(\hat{\vec{\beta}}-\vec{\beta})^T]\\
-\end{aligned}$$
-
-- now look at the expression for $\hat{\vec{\beta}} = (\mathbb{X}^T\cdot \mathbb{X})^{-1}\mathbb{X}^T(\vec{y})$, sub this expression back to $\hat{\vec{\beta}}$, then
-
-$$\begin{aligned}
-V[\hat{\vec{\beta}}]&=E[(\hat{\vec{\beta}}-\vec{\beta})(\hat{\vec{\beta}}-\vec{\beta})^T]\\
-\phantom{0}
-&=E[\big{(}(\mathbb{X}^T\cdot \mathbb{X})^{-1}\mathbb{X}^T\vec{\epsilon}\big{)}\big{(}(\mathbb{X}^T\cdot \mathbb{X})^{-1}\mathbb{X}^T\vec{\epsilon}\big{)}^T]\\
-\phantom{0}
-&\text{gram matrix is symmetric matrix}\\
-\phantom{0}
-&=E[\big{(}(\mathbb{X}^T\cdot \mathbb{X})^{-1}\mathbb{X}^T\vec{\epsilon}\big{)}\big{(}\vec{\epsilon}^T\mathbb{X}\cdot (\mathbb{X}^T\mathbb{X}\big{)}^{-1})]\\
-\phantom{0}
-&=E[\big{(}(\mathbb{X}^T\cdot \mathbb{X})^{-1}]\cdot E[\mathbb{X}^T\vec{\epsilon}\vec{\epsilon}^T\mathbb{X}]\cdot E[(\mathbb{X}^T\mathbb{X}^{-1})]\\
-&\text{the gram matrix becomes variance and covariance matrix when centered}\\
-&=\frac{E[\mathbb{X}^T\vec{\epsilon}\vec{\epsilon}^T\mathbb{X}]}{(E[\mathbb{X}^T\cdot \mathbb{X}])^2}\\
-\end{aligned}$$
-
-
-\break
-
-```{r echo=FALSE, fig.align='center', message=FALSE, warning=FALSE}
-knitr::include_graphics("fig/1.JPG")
-```
-
-\break 
-
 ## Recommended books
 
 - `Linear Algebra and its application` by David C.Lay 4th edition
 - Linear and Nonlinear Programming by Stephen G. Nash and Ariela Sofer
 - The fundamental theorem of linear algebra, Strang, Gilbert
-- `I wonder by Sam: Linear Algebra for Data Scientist` (soon to be published!)
+- `I wonder by Sam: Linear Algebra for Data Scientist` (see the folder above, contains all the code.)
 
-## Dancing with Wu Li Masters
+$$\text{Proj}_{\vec{u}}{\vec{v}} = \frac{\vec{v}\vec{u}}{{||\vec{u}||}}$$
 
-- `Young man, in mathmatics, you don't understand things. You just get used to them` by John Von Neumann from *Dancing with Wu Li Masters*
-
-Who is John Von Neumann?
-
-- [Leonoid Kantorovich](https://en.wikipedia.org/wiki/Leonid_Kantorovich) (1912 - 1986): `A new method of solving some classes of extrmal problems (1937)`
-- [George B. Dantzig](https://news.stanford.edu/news/2005/may25/dantzigobit-052505.html) (1914 - 2005) : `SIMPLEX (1947)`
-- [Jerzy Neyman](https://en.wikipedia.org/wiki/Jerzy_Neyman) (1894 - 1982) : `Confidence Interval, P-value`
-- [John Von Neumann](https://en.wikipedia.org/wiki/John_von_Neumann) : `The duality theorem (1947)` 
+```{r echo=FALSE, fig.align='center', out.width="100%"}
+knitr::include_graphics(here("fig/1.PNG"))
+```
 
 
-## Schedule
 
-- I will try to cover up to wk 7 material 
+## Topics 
 
-|Week| Topic | Key concepts | 
-|:---:|:---:|---|
-|1    | Attributes and method of `vector` and `matrix` | see notes below |
-|2    | Slight detour to probabilities: Joint, conditional, marginal and Bayes formula. Markov chain, eigenvalue, eigenvectors| Linear combinations|
-|3    | What is rref(A) and what does it tell you about your matrix? | Basis, subspace, space, span, projection, inverse|
-|4    | Fundamental four subspaces of matrix.  Given a vector, can you find out where it `lives`?| Shall we span? |
-|5    | Projection, projection, projection | linear combination, change of basis |
-|6    | Findings vector multiplication that looks like projection | projection, orthogonal matrix, spanning Space |
-|7    | Change of basis and solving systems of equations  | matrix decomposition |
-|8    | It does not matter how slowly you move as long as you are making progress | eignevalue, eigenvector, Markov chain|
-|9   | Eignedecomposition |  eigenvalue, eigenvector, eigenspace, nullspace |
-|10   | Markov chain       | irreducible, reduccible, ergodic, regular, absorbing MC. What type of matrix do you have? |
-|11    | Meeting matrix again |  PSD, PD, ID, NSD, ND, Condition number, symmetric matrix, gram matrix, diagonailzable matrix |
-|12   | Singular value decomposition | SVD and PCA |
-|13   | SIMPLEX method and    | *The Martians* |
-|14   | The duality theorem |  and .. Basis can a function! (What? really?  FFT, EEMD) |
+- Attributes and method of `vector` and `matrix` 
+  - Basis, subspace, space, span, projection, inverse|
 
+- Fundamental four subspaces of matrix.  Given a vector, can you identify where it `lives`?
+
+- What is rref(A) and what does it tell you about your matrix? | 
+
+- linear combination, and fundamental four subspaces
+
+- Projection, projection, projection
+
+
+
+Additional topics 
+
+- Slight detour to probabilities: Joint, conditional, marginal and Bayes formula. Markov chain, eigenvalue, eigenvectors
+
+- Findings vector multiplication that looks like projection 
+  - projection, orthogonal matrix, spanning Space |
+
+-Change of basis and solving systems of equations 
+  - matrix decomposition |
+
+- More on eignevalue, eigenvector, 
+  - Markov chain
+    - irreducible, reduccible, ergodic, regular, absorbing MC. 
+    
+- PSD, PD, ID, NSD, ND, Condition number, symmetric matrix, gram matrix, diagonailzable matrix |
+
+- Singular value decomposition
+  - SVD and PCA 
+
+- SIMPLEX method 
+  - The duality theorem 
+  
+- Basis can a function (FFT, EEMD)
 
 
 # Background
@@ -309,3 +290,12 @@ example 2, 3,5
 ## CH 5.1 to 5.6
 
 ## CH6 6.1 to 6.6 (this is OLS!)
+
+### additional information
+
+Who is John Von Neumann?
+
+- [Leonoid Kantorovich](https://en.wikipedia.org/wiki/Leonid_Kantorovich) (1912 - 1986): `A new method of solving some classes of extrmal problems (1937)`
+- [George B. Dantzig](https://news.stanford.edu/news/2005/may25/dantzigobit-052505.html) (1914 - 2005) : `SIMPLEX (1947)`
+- [Jerzy Neyman](https://en.wikipedia.org/wiki/Jerzy_Neyman) (1894 - 1982) : `Confidence Interval, P-value`
+- [John Von Neumann](https://en.wikipedia.org/wiki/John_von_Neumann) : `The duality theorem (1947)` 
