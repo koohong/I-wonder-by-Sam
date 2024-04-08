@@ -61,7 +61,7 @@ Additional topics
   - projection, orthogonal matrix, spanning Space |
 
 -Change of basis and solving systems of equations 
-  - matrix decomposition |
+  - matrix decomposition 
 
 - More on eignevalue, eigenvector, 
   - Markov chain
@@ -199,8 +199,6 @@ B
 
 $$\mathbb{B} \cdot \vec{x}_B + \mathbb{N} \cdot \vec{x}_N = \mathbb{A}\cdot\vec{x}$$
 
-
-
 ## Creating sample vector
 
 ```{r}
@@ -223,6 +221,29 @@ rref(H)
 
 ```
 
+
+# Projection 
+
+```{r}
+library(wooldridge)
+
+colnames(hprice1)
+
+m1 <- lm(price ~ bdrms, data = hprice1)
+summary(m1)
+
+#projection
+X <- cbind(1,hprice1$bdrms)
+P <- inv((t(X)%*%X))%*%t(X)
+b_hat <- P%*%hprice1$price
+
+
+diag(88)
+
+```
+
+
+
 ## C and P 
 
 $$\begin{aligned}
@@ -232,6 +253,7 @@ _{n}C_{r} &= \frac{n!}{r!(n-r)!}
 
 Another way to express combination
 $${N\choose r} = \frac{n!}{(n-r)!r!}$$
+
 
 # Recommended Chapters and  reading from David Lay
 

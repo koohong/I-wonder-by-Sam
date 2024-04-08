@@ -1,0 +1,1097 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Linear Algebrea: wk5 projection},
+  pdfauthor={Bill Chung},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Linear Algebrea: wk5 projection}
+\author{Bill Chung}
+\date{3월 08, 2024}
+
+\begin{document}
+\maketitle
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(far)}
+\FunctionTok{library}\NormalTok{(MASS)}
+\FunctionTok{library}\NormalTok{(pracma)}
+\FunctionTok{library}\NormalTok{(expm)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{example}{%
+\section{Example}\label{example}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{v1 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+\NormalTok{v2 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{)}
+\NormalTok{v3 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{)}
+
+\NormalTok{A }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(v1,v2,v3)}
+\FunctionTok{print}\NormalTok{(A)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      v1 v2 v3
+## [1,]  1  1  1
+## [2,]  2  0  0
+## [3,]  3 -1  1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{b }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{5}\NormalTok{)}
+
+\NormalTok{Ab }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(A,b)}
+\FunctionTok{print}\NormalTok{(Ab)  }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      v1 v2 v3 b
+## [1,]  1  1  1 3
+## [2,]  2  0  0 2
+## [3,]  3 -1  1 5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#step 1}
+\FunctionTok{Rank}\NormalTok{(A)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Rank}\NormalTok{(Ab)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#step 2}
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{inv}\NormalTok{(A)}\SpecialCharTok{\%*\%}\NormalTok{b}
+
+\NormalTok{A}\SpecialCharTok{\%*\%}\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1]
+## [1,]    3
+## [2,]    2
+## [3,]    5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{v1 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{6}\NormalTok{)}
+\NormalTok{v2 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{10}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{0}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+\NormalTok{v3 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\FloatTok{0.2}\NormalTok{,}\DecValTok{100}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{4}\NormalTok{,}\DecValTok{7}\NormalTok{)}
+
+\NormalTok{A }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(v1,v2,v3)}
+\FunctionTok{print}\NormalTok{(A)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      v1 v2    v3
+## [1,]  1 10  -1.0
+## [2,]  2  5   0.2
+## [3,]  5  0 100.0
+## [4,]  7  2  -4.0
+## [5,]  6  3   7.0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{b }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{300}\NormalTok{,}\FloatTok{0.5}\NormalTok{,}\DecValTok{10}\NormalTok{)}
+
+\NormalTok{Ab }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(A,b)}
+
+\CommentTok{\#step 1}
+\FunctionTok{Rank}\NormalTok{(A)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Rank}\NormalTok{(Ab)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#find something in my column space A that is close to b}
+\NormalTok{G }\OtherTok{\textless{}{-}} \FunctionTok{t}\NormalTok{(A)}\SpecialCharTok{\%*\%}\NormalTok{A }\CommentTok{\#gram matrix}
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{inv}\NormalTok{(G)}\SpecialCharTok{\%*\%}\FunctionTok{t}\NormalTok{(A)}\SpecialCharTok{\%*\%}\NormalTok{b}
+
+\NormalTok{b\_hat }\OtherTok{\textless{}{-}}\NormalTok{ A}\SpecialCharTok{\%*\%}\NormalTok{x}
+
+
+\NormalTok{P }\OtherTok{\textless{}{-}}\NormalTok{ A}\SpecialCharTok{\%*\%}\FunctionTok{inv}\NormalTok{(G)}\SpecialCharTok{\%*\%}\FunctionTok{t}\NormalTok{(A)}
+\NormalTok{b\_hat }\OtherTok{\textless{}{-}}\NormalTok{P}\SpecialCharTok{\%*\%}\NormalTok{b}
+
+\NormalTok{N }\OtherTok{\textless{}{-}} \FunctionTok{diag}\NormalTok{(}\DecValTok{5}\NormalTok{) }\SpecialCharTok{{-}}\NormalTok{ P}
+
+\NormalTok{residual }\OtherTok{\textless{}{-}}\NormalTok{ N}\SpecialCharTok{\%*\%}\NormalTok{b}
+\NormalTok{b}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]    3.0    4.0 -300.0    0.5   10.0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{b\_hat }\SpecialCharTok{+}\NormalTok{ residual}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##        [,1]
+## [1,]    3.0
+## [2,]    4.0
+## [3,] -300.0
+## [4,]    0.5
+## [5,]   10.0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{round}\NormalTok{(}\FunctionTok{t}\NormalTok{(b\_hat)}\SpecialCharTok{\%*\%}\NormalTok{residual,}\DecValTok{0}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1]
+## [1,]    0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{c1 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+\NormalTok{c2 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{3}\NormalTok{)}
+\NormalTok{c3 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+\NormalTok{c4 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\SpecialCharTok{{-}}\FloatTok{2.1}\NormalTok{,}\FloatTok{3.01}\NormalTok{)}
+\NormalTok{c5 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\FloatTok{0.03}\NormalTok{)}
+
+\NormalTok{A }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(c1,c2,c3,c4,c5)}
+
+\FunctionTok{print}\NormalTok{(A)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      c1 c2 c3    c4   c5
+## [1,]  1  1 -1  1.00 1.00
+## [2,]  2  2  2 -2.10 2.00
+## [3,]  3 -3  3  3.01 0.03
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Rank}\NormalTok{(A)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{b }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{5}\NormalTok{)}
+
+\CommentTok{\#step divide A into B and D}
+\FunctionTok{rref}\NormalTok{(A)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      c1 c2 c3        c4    c5
+## [1,]  1  0  0  1.001667 0.505
+## [2,]  0  1  0 -1.026667 0.495
+## [3,]  0  0  1 -1.025000 0.000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{B }\OtherTok{\textless{}{-}}\NormalTok{ A[,}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{)]}
+\NormalTok{B}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      c1 c2 c3
+## [1,]  1  1 -1
+## [2,]  2  2  2
+## [3,]  3 -3  3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{G }\OtherTok{\textless{}{-}} \FunctionTok{t}\NormalTok{(B)}\SpecialCharTok{\%*\%}\NormalTok{B}
+
+\NormalTok{D }\OtherTok{\textless{}{-}}\NormalTok{ A[,}\SpecialCharTok{{-}}\FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{)]}
+\NormalTok{D}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##         c4   c5
+## [1,]  1.00 1.00
+## [2,] -2.10 2.00
+## [3,]  3.01 0.03
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x\_B }\OtherTok{\textless{}{-}} \FunctionTok{inv}\NormalTok{(G)}\SpecialCharTok{\%*\%}\FunctionTok{t}\NormalTok{(B)}\SpecialCharTok{\%*\%}\NormalTok{b}
+
+\NormalTok{B}\SpecialCharTok{\%*\%}\NormalTok{x\_B}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1]
+## [1,]    4
+## [2,]    3
+## [3,]    5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}}\FunctionTok{rbind}\NormalTok{(x\_B,}\DecValTok{0}\NormalTok{,}\DecValTok{0}\NormalTok{)}
+\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           [,1]
+## c1  2.83333333
+## c2 -0.08333333
+## c3 -1.25000000
+##     0.00000000
+##     0.00000000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{A}\SpecialCharTok{\%*\%}\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1]
+## [1,]    4
+## [2,]    3
+## [3,]    5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{A }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{rnorm}\NormalTok{(}\DecValTok{30}\NormalTok{), }\AttributeTok{nrow=}\DecValTok{10}\NormalTok{)}
+\FunctionTok{Rank}\NormalTok{(A)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{class}\NormalTok{(A)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "matrix" "array"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{A}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             [,1]       [,2]        [,3]
+##  [1,]  0.6877389  0.6083669  0.28521448
+##  [2,] -0.8963631 -1.3884269 -0.55726946
+##  [3,] -0.8227823 -0.1427122 -0.26880384
+##  [4,]  0.6196055  0.4837353  0.08355694
+##  [5,]  0.4038117  0.6593052  1.65693257
+##  [6,]  1.4352106  1.7666268  1.78048647
+##  [7,]  1.0137339  0.2076354 -0.20726894
+##  [8,]  1.0299175  0.7212924 -0.65528190
+##  [9,]  0.1450796 -0.7658370  1.42612593
+## [10,]  0.3284372  1.4986480 -1.69656179
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{b }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{6}\NormalTok{,}\DecValTok{7}\NormalTok{,}\DecValTok{8}\NormalTok{,}\DecValTok{9}\NormalTok{,}\DecValTok{10}\NormalTok{)}
+\NormalTok{b}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1]  1  2  3  4  5  6  7  8  9 10
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Ab }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(A,b)}
+\CommentTok{\#step compare the rank}
+\FunctionTok{Rank}\NormalTok{(A)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Rank}\NormalTok{(Ab)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#project it}
+\NormalTok{G }\OtherTok{\textless{}{-}} \FunctionTok{t}\NormalTok{(A)}\SpecialCharTok{\%*\%}\NormalTok{A}
+
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{inv}\NormalTok{(G)}\SpecialCharTok{\%*\%}\FunctionTok{t}\NormalTok{(A)}\SpecialCharTok{\%*\%}\NormalTok{b}
+
+\NormalTok{x   }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##            [,1]
+## [1,]  4.4277275
+## [2,]  0.1723709
+## [3,] -0.5475753
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{A}\SpecialCharTok{\%*\%}\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             [,1]
+##  [1,]  2.9938090
+##  [2,] -3.9030292
+##  [3,] -3.5204651
+##  [4,]  2.7810724
+##  [5,]  0.9943181
+##  [6,]  5.6842862
+##  [7,]  4.6378232
+##  [8,]  5.0433402
+##  [9,] -0.2705466
+## [10,]  2.6415489
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{A}\SpecialCharTok{\%*\%}\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             [,1]
+##  [1,]  2.9938090
+##  [2,] -3.9030292
+##  [3,] -3.5204651
+##  [4,]  2.7810724
+##  [5,]  0.9943181
+##  [6,]  5.6842862
+##  [7,]  4.6378232
+##  [8,]  5.0433402
+##  [9,] -0.2705466
+## [10,]  2.6415489
+\end{verbatim}
+
+\hypertarget{clt}{%
+\section{CLT}\label{clt}}
+
+\hypertarget{sample-satistics}{%
+\subsubsection{Sample Satistics}\label{sample-satistics}}
+
+\begin{itemize}
+\tightlist
+\item
+  page 96
+\end{itemize}
+
+What does the following notation mean?
+
+\[T_{(n)} = h_{(n)}(X_1,X_2,...X_n)\] where
+\(h_{(n)}:\mathbb{R}^n \rightarrow \mathbb{R}, \forall n \in \mathbb{n}\)
+
+\hypertarget{convergence-in-probability}{%
+\subsubsection{Convergence in
+Probability}\label{convergence-in-probability}}
+
+\begin{itemize}
+\tightlist
+\item
+  see page 99
+\end{itemize}
+
+\[T_{(n)} \xrightarrow p c\]
+
+\hypertarget{weak-law-of-large-numbers}{%
+\subsubsection{Weak Law of large
+numbers}\label{weak-law-of-large-numbers}}
+
+\begin{itemize}
+\tightlist
+\item
+  see page 100 and read first two lines of page 101
+\end{itemize}
+
+\[\bar{X}_{(n)} \xrightarrow p E[X]\]
+
+\hypertarget{law-of-large-numbers-lln}{%
+\subsubsection{Law of Large Numbers
+(LLN)}\label{law-of-large-numbers-lln}}
+
+\[\lim\limits_{n \rightarrow \infty} \sum_{i=1}^{n}\frac{X_i}{n}=E[X]\]
+
+\hypertarget{clt-1}{%
+\subsubsection{CLT}\label{clt-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  See page 109
+\end{itemize}
+
+Suppose \{\(X_1, X_2,..X_n\)\} is a sequence of iid rv with
+\(\text{E}[X_i]=\mu\) and \(\text{V}[X_i] = \sigma^2\). Then as
+\(n \rightarrow \infty\), random variable \(\sqrt{n}(\bar{X}_n - \mu)\)
+converges in distribution with a normal distribution with mean \(0\) and
+variance \(\sigma^2\)
+
+\[\sqrt{n}(\bar{X}_n - \mu) \xrightarrow d N(0,\sigma^2)\]
+
+\hypertarget{more-about-invertible-matrix}{%
+\section{More about invertible
+matrix}\label{more-about-invertible-matrix}}
+
+\hypertarget{given-suppose-ain-rnxn-and-a-1-exist-then-the-following-can-be-said}{%
+\subsection{\texorpdfstring{Given: Suppose \(A\in R^{nxn}\) and
+\(A^{-1}\) exist, then the following can be
+said}{Given: Suppose A\textbackslash in R\^{}\{nxn\} and A\^{}\{-1\} exist, then the following can be said}}\label{given-suppose-ain-rnxn-and-a-1-exist-then-the-following-can-be-said}}
+
+\begin{itemize}
+\tightlist
+\item
+  The columns of \(A\) is the basis of \(R^{n}\)
+\item
+  rank \(A\) = n
+\item
+  \(Nul A=\) \{\(\vec{0}\)\}
+\item
+  dim \(Nul A\) = 0
+\item
+  \(A^{-1}A=I\)
+\item
+  \(AA^{-1}=I\)
+\item
+  The Linear transformation \(\vec{x} \mapsto A\vec{x}\) is one-to-one
+\item
+  \(A^T\) is an invertible matrix
+\end{itemize}
+
+\hypertarget{change-of-basis}{%
+\subsection{Change of basis}\label{change-of-basis}}
+
+Given: \(\vec{y} \notin C(A)\) , and Rank of \(A\) = 2, and
+\(\vec{y} \in R^3\)
+
+\hypertarget{problem-1}{%
+\subsubsection{Problem 1}\label{problem-1}}
+
+\begin{itemize}
+\tightlist
+\item
+  Let \(\hat{\vec{y}} \subset C(A)\) where
+  \(\vec{C}_1 \text{ and } \vec{C}_2\) are the basis of \(C(A)\)
+\item
+  Find \(\hat{\vec{y}}\) that minimizes \(||\vec{y}-\hat{\vec{y}}||\)
+\end{itemize}
+
+\hypertarget{solution}{%
+\subsubsection{Solution:}\label{solution}}
+
+\begin{itemize}
+\tightlist
+\item
+  let \(C\) and \(N\) be the matrix that contains the basis of \(C(A)\)
+  and \(N(A^T)\)
+\item
+  Since:
+  \(C\vec{x}=\hat{\vec{y}} \text{   and   } C\vec{x} + N\vec{z} = \vec{y}\)
+\item
+  Simplify the expression
+\end{itemize}
+
+\[\begin{aligned}
+C^TC\vec{x} &= C^T\vec{y} \\
+\vec{x} &= (C^TC)^{-1}C^T\vec{y} 
+\end{aligned}\]
+
+\begin{itemize}
+\tightlist
+\item
+  Then,
+\end{itemize}
+
+\[C(C^TC)^{-1}C^T\vec{y}=\hat{\vec{y}}\]
+
+\begin{itemize}
+\tightlist
+\item
+  \(C(C^TC)^{-1}C^T\) is called \textbf{projection matrix}*
+\end{itemize}
+
+\hypertarget{about-projection-matrix}{%
+\section{About projection matrix}\label{about-projection-matrix}}
+
+\[\begin{aligned}
+ \mathbb{I}  &= \mathbb{P} + \mathbb{B} \\
+\vec{y} &= \mathbb{P}\vec{y} + \mathbb{B}\vec{y}\\
+\end{aligned}\]
+
+\begin{itemize}
+\tightlist
+\item
+  where \(P \text{ and } B\) are the \texttt{projection\ matrices} for
+  \(C(A) \text{ and } N(A^T)\)
+\end{itemize}
+
+\hypertarget{dot-product}{%
+\subsection{DOT Product}\label{dot-product}}
+
+\[\hat{\vec{y}} = P_{\vec{u}}^{\vec{y}} = \frac{\vec{y}\centerdot\vec{u}}{\vec{u}\centerdot\vec{u}}\vec{u}\]
+
+where
+
+\(\vec{y}\centerdot\vec{u} \text{ and } \vec{u}\centerdot\vec{u}\) are
+scalar quantity.
+
+Projection tells you the \texttt{length} of the
+\texttt{projected\ vector}, \(\hat{\vec{y}}\) in terms of the vector
+that is \texttt{being\ projected\ onto} \(\vec{u}\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# y will be projected onto u}
+\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{7}\NormalTok{,}\DecValTok{6}\NormalTok{),}\AttributeTok{nrow=}\DecValTok{2}\NormalTok{)}
+\NormalTok{u }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{4}\NormalTok{,}\DecValTok{2}\NormalTok{),}\AttributeTok{nrow=}\DecValTok{2}\NormalTok{)}
+\NormalTok{u0 }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{16}\NormalTok{,}\DecValTok{8}\NormalTok{),}\AttributeTok{nrow=}\DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{example-1}{%
+\section{Example}\label{example-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{b }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+
+\NormalTok{c1 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+\NormalTok{c2 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\FloatTok{2.1}\NormalTok{,}\FloatTok{3.2}\NormalTok{)}
+\NormalTok{c3 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{,}\DecValTok{1}\NormalTok{,}\SpecialCharTok{{-}}\DecValTok{2}\NormalTok{)}
+
+\NormalTok{A }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(c1,c2,c3)}
+\FunctionTok{print}\NormalTok{(A)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      c1  c2 c3
+## [1,]  1 1.0  0
+## [2,]  2 2.1  1
+## [3,]  3 3.2 -2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Rank}\NormalTok{(A)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#get x coordinate}
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{inv}\NormalTok{(A)}\SpecialCharTok{\%*\%}\NormalTok{b}
+\NormalTok{A}\SpecialCharTok{\%*\%}\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1]
+## [1,]    1
+## [2,]    5
+## [3,]    3
+\end{verbatim}
+
+\hypertarget{example-of-projection-matrix}{%
+\subsection{example of projection
+matrix}\label{example-of-projection-matrix}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{b }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+
+\NormalTok{c1 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+\NormalTok{c2 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{,}\FloatTok{2.1}\NormalTok{,}\FloatTok{3.2}\NormalTok{)}
+
+\NormalTok{A }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(c1,c2)}
+\FunctionTok{print}\NormalTok{(A)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      c1  c2
+## [1,]  1 1.0
+## [2,]  2 2.1
+## [3,]  3 3.2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Ab }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(A,b)}
+\FunctionTok{Rank}\NormalTok{(A)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Rank}\NormalTok{(Ab)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#get x coordinate}
+\NormalTok{G }\OtherTok{\textless{}{-}} \FunctionTok{t}\NormalTok{(A)}\SpecialCharTok{\%*\%}\NormalTok{A}
+
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{inv}\NormalTok{(G)}\SpecialCharTok{\%*\%}\FunctionTok{t}\NormalTok{(A)}\SpecialCharTok{\%*\%}\NormalTok{b}
+
+\NormalTok{b\_hat }\OtherTok{\textless{}{-}}\NormalTok{ A}\SpecialCharTok{\%*\%}\NormalTok{x}
+
+\CommentTok{\#projection matrix to C(A)}
+\NormalTok{P }\OtherTok{\textless{}{-}}\NormalTok{ A}\SpecialCharTok{\%*\%}\FunctionTok{inv}\NormalTok{(G)}\SpecialCharTok{\%*\%}\FunctionTok{t}\NormalTok{(A)}
+
+\NormalTok{b\_hat }\OtherTok{\textless{}{-}}\NormalTok{ P}\SpecialCharTok{\%*\%}\NormalTok{b}
+
+\NormalTok{residual }\OtherTok{\textless{}{-}}\NormalTok{ b}\SpecialCharTok{{-}}\NormalTok{ b\_hat}
+\FunctionTok{print}\NormalTok{(residual)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1]
+## [1,]   -1
+## [2,]    2
+## [3,]   -1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#projection matrix to left nullspace}
+\NormalTok{N}\OtherTok{\textless{}{-}} \FunctionTok{diag}\NormalTok{(}\DecValTok{3}\NormalTok{) }\SpecialCharTok{{-}}\NormalTok{ P}
+\NormalTok{N}\SpecialCharTok{\%*\%}\NormalTok{b}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1]
+## [1,]   -1
+## [2,]    2
+## [3,]   -1
+\end{verbatim}
+
+\break
+
+\hypertarget{orthogonal}{%
+\section{Orthogonal}\label{orthogonal}}
+
+\begin{itemize}
+\item
+  Two vectors \(\vec{v_1}\) and \(\vec{v_2} \in R^m\) are orthogonal, if
+  \(\vec{v_1} \centerdot \vec{v_2}=0\)
+\item
+  Note that the dot product produce scalar quantity 0 not \(\vec{0}\)
+\item
+  Notice \(\vec{v}_1\) is size of 3 vector and \texttt{orth(\ )} returns
+  normalized \(\vec{v}_1\)
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{v1 }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{normalizing-the-basis}{%
+\subsection{Normalizing the basis}\label{normalizing-the-basis}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{c\_A }\OtherTok{\textless{}{-}} \FunctionTok{orth}\NormalTok{(v1)}
+\FunctionTok{print}\NormalTok{(c\_A)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           [,1]
+## [1,] 0.4242641
+## [2,] 0.5656854
+## [3,] 0.7071068
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#notice what happens when you dot v1 and c\_A}
+\FunctionTok{print}\NormalTok{(v1}\SpecialCharTok{\%*\%}\NormalTok{c\_A)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##          [,1]
+## [1,] 7.071068
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{Norm}\NormalTok{(v1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 7.071068
+\end{verbatim}
+
+\hypertarget{space-subspace-orthogonal-complement-subspace}{%
+\subsection{Space, subspace, orthogonal complement
+subspace}\label{space-subspace-orthogonal-complement-subspace}}
+
+\begin{itemize}
+\tightlist
+\item
+  Let \(S\) be space of \(R^n\), \(A\) is \(R^{mxn}\) matrix.
+\item
+  Let \(C(A)\) and \(N(A^T)\) be the column space and left nullspace of
+  \(A\)
+\item
+  \(C(A)\) and \(N(A^T)\) are orthogonal complement subspace of each
+  other.
+\item
+  Then, any vector, \(\vec{x} \in S\) but
+  \(\vec{x} \notin C(A) \text{ or } \vec{x} \notin N(A^T)\) can be
+  expressed by the linear combination of basis of
+  \(C(A) \text{ and } N(A^T)\)
+\end{itemize}
+
+\hypertarget{diagonal-matrix}{%
+\subsubsection{Diagonal matrix}\label{diagonal-matrix}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{D1 }\OtherTok{\textless{}{-}} \FunctionTok{diag}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{5}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{10}\NormalTok{),}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{)}
+\FunctionTok{print}\NormalTok{(D1)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3]
+## [1,]    5    0    0
+## [2,]    0    2    0
+## [3,]    0    0   10
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(}\FunctionTok{inv}\NormalTok{(D1)) }\CommentTok{\#notice when the diagonal elements has zero in it, D1 becomes singular.}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3]
+## [1,]  0.2  0.0  0.0
+## [2,]  0.0  0.5  0.0
+## [3,]  0.0  0.0  0.1
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{print}\NormalTok{(D1 }\SpecialCharTok{\%\^{}\%} \DecValTok{3}\NormalTok{) }\CommentTok{\# using the function in expm}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3]
+## [1,]  125    0    0
+## [2,]    0    8    0
+## [3,]    0    0 1000
+\end{verbatim}
+
+\hypertarget{orthogonal-matrix}{%
+\section{Orthogonal matrix}\label{orthogonal-matrix}}
+
+\[U^{-1} = U^T\]
+
+\begin{itemize}
+\tightlist
+\item
+  Let \(W\) be a subspace of \(R^n\) and let \(\vec{y} \in R^n\) but
+  \(\vec{y} \notin W\).\\
+\item
+  Then, \(\hat{\vec{y}} \in W\) that is the closest approximation of
+  \(\vec{y}\) is the \(\vec{y}\) projected onto \(W\)
+\end{itemize}
+
+\hypertarget{proerty-of-matrx-that-is-not-square-but-has-orthonormal-basis}{%
+\subsection{Proerty of matrx that is not square, but has orthonormal
+basis}\label{proerty-of-matrx-that-is-not-square-but-has-orthonormal-basis}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{v }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{),}\AttributeTok{nrow=}\DecValTok{3}\NormalTok{)}
+\NormalTok{O }\OtherTok{\textless{}{-}} \FunctionTok{orthonormalization}\NormalTok{(v)}
+\FunctionTok{print}\NormalTok{(O)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           [,1]       [,2]       [,3]
+## [1,] 0.6666667 -0.2357023 -0.7071068
+## [2,] 0.3333333  0.9428090  0.0000000
+## [3,] 0.6666667 -0.2357023  0.7071068
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{U }\OtherTok{\textless{}{-}} \FunctionTok{cbind}\NormalTok{(O[,}\DecValTok{1}\NormalTok{],O[,}\DecValTok{2}\NormalTok{])}
+\FunctionTok{print}\NormalTok{(}\FunctionTok{t}\NormalTok{(U)}\SpecialCharTok{\%*\%}\NormalTok{U)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2]
+## [1,]    1    0
+## [2,]    0    1
+\end{verbatim}
+
+Suppose \(C\) is matrix that contains orthonormal basis of \(W\). Since
+there exist \(\vec{y} \notin W\), \(C\) can't be square matrix.
+
+However, the basis in \(C\) can still be \texttt{orthonormal}.
+
+Let \(C\) be retangular matrix with orthonormal basis,
+
+\[\vec{y} = C\vec{x}_w + N\vec{x}_N\] where - \(N\) is the basis
+spanning orthogonal complement subspace of \(W\). Then,
+\[C^{T}\vec{y} = C^TC\vec{x}_w\]
+
+Since \(C\) is matrix that contains orthonormal basis, \(C^TC\) becomes
+identify matrix. \[C^{T}\vec{y} = \vec{x}_W \] Now, the location of
+\(\hat{\vec{y}}\) in terms of the basis in \(C\) can be expressed as
+below \[C\vec{x}_W = \hat{\vec{y}}\]
+
+Solving for \(\vec{x}_W\) \[\vec{x}_W = C^T\hat{\vec{y}}\]
+
+Sub the above expression of \(\vec{x}_W\) to the following equation
+
+\[C^{T}\vec{y} = C^TC\vec{x}_w\]
+
+\[C^{T}\vec{y} = C^TC(C^T\hat{\vec{y}})\]
+
+Then,
+
+\[CC^T\vec{y} = \hat{\vec{y}}\]
+
+\hypertarget{gram-schmidt-process}{%
+\section{Gram-Schmidt Process}\label{gram-schmidt-process}}
+
+\begin{itemize}
+\item
+  Let \{\(\vec{x}_1,\vec{x}_2...\vec{x}_p\)\} be basis for a nonzero
+  subspace \(W\) of \(R^n\) where \(p < n\). Gram-Schimidt process
+  converts \{\(\vec{x}_1,\vec{x}_2...\vec{x}_p\)\} to
+  \{\(\vec{v}_1,\vec{v}_2...\vec{v}_p\)\} where
+  \{\(\vec{v}_1,\vec{v}_2...\vec{v}_p\)\} are orthogonal basis for \(W\)
+\item
+  Gram-Schimit process is projecting one set of basis to another basis
+  that is orthogonal to them.
+\item
+  Notice the \texttt{orthonormalization(\ )} in \texttt{R} returns 3 x 3
+  matrix. This function in R returns the basis spanning the subspace
+  that is orthogonal to subspace spanned by \(\vec{v}_1\)
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{GS }\OtherTok{\textless{}{-}} \FunctionTok{orthonormalization}\NormalTok{(v1)}
+\FunctionTok{print}\NormalTok{(GS)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##           [,1]       [,2]       [,3]
+## [1,] 0.4242641  0.9055385  0.0000000
+## [2,] 0.5656854 -0.2650357  0.7808688
+## [3,] 0.7071068 -0.3312946 -0.6246950
+\end{verbatim}
+
+\href{https://cran.r-project.org/web/packages/matlib/vignettes/gramreg.html}{Gram-Schmidt}
+
+\end{document}
