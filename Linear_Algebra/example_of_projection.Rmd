@@ -1,0 +1,56 @@
+---
+title: "Untitled"
+author: "Bill Chung"
+date: "2023-02-17"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(far)
+library(MASS)
+library(pracma)
+library(wooldridge)
+library(tidyverse)
+```
+
+```{r}
+A <- matrix(c(1,2,3,6), nrow=2)
+print(A)
+Rank(A)
+
+GA <- t(A)%*%A
+Rank(GA)
+
+
+```
+
+
+
+```{r}
+df <- wooldridge::hprice1
+
+glimpse(df)
+
+df %>% ggplot(aes(x=lotsize, y = price)) + geom_point() +
+  facet_wrap(~as.factor(colonial))
+
+mod1 <- lm(price ~ lotsize + colonial, data =df)
+
+summary(mod1)
+
+temp <- df[,c(4,6)]
+A <- as.matrix(cbind(1,temp))
+Rank(A)
+
+G <- t(A)%*%A
+G
+
+b <- df$price
+
+x <- inv(G)%*%t(A)%*%b
+x
+
+summary(mod1)
+```
+

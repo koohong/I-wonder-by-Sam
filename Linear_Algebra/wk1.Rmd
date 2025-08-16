@@ -23,14 +23,23 @@ library(here)
   - Be able to explain the difference between $\epsilon$ and $\hat{\epsilon}$
   - Why $\hat{\epsilon}$ will orthogonal to all the features in your MLR
 
+- W203 TEXT BOOK [LINK](https://www-cambridge-org.libproxy.berkeley.edu/core/books/foundations-of-agnostic-statistics/684756357E7E9B3DFF0A8157FB2DCECA)
+
+- Install R/RStudio and LaTex [LINK](https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html)
+
+- MIDS FOR LIFE [LINK](https://learn.berkeley.edu/courses/395)
+
 ## Recommended books
 
 - `Linear Algebra and its application` by David C.Lay 4th edition
+
 - Linear and Nonlinear Programming by Stephen G. Nash and Ariela Sofer
+
 - The fundamental theorem of linear algebra, Strang, Gilbert
+
 - `I wonder by Sam: Linear Algebra for Data Scientist` (see the folder above, contains all the code.)
 
-$$\text{Proj}_{\vec{u}}{\vec{v}} = \frac{\vec{v}\vec{u}}{{||\vec{u}||}}$$
+$$\text{Proj}_{\vec{u}}{\vec{v}} = \frac{\vec{v}\cdot\vec{u}}{\vec{u}^T\vec{u}}\cdot\vec{u}$$
 
 ```{r echo=FALSE, fig.align='center', out.width="100%"}
 knitr::include_graphics(here("fig/1.PNG"))
@@ -40,33 +49,32 @@ knitr::include_graphics(here("fig/1.PNG"))
 
 ## Topics 
 
+- Rank–nullity theorem [LINK](https://en.wikipedia.org/wiki/Rank%E2%80%93nullity_theorem#:~:text=The%20rank%E2%80%93nullity%20theorem%20is,the%20nullity%20of%20M%3B%20and)
+
 - Attributes and method of `vector` and `matrix` 
-  - Basis, subspace, space, span, projection, inverse|
+  - Basis, subspace, space, span, projection, inverse
+  - linear combination
+  - Hyperplane
 
 - Fundamental four subspaces of matrix.  Given a vector, can you identify where it `lives`?
+  - orthogonal complement subspace
+  
+- What is rref(A) and what does it tell you about your matrix? 
 
-- What is rref(A) and what does it tell you about your matrix? | 
-
-- linear combination, and fundamental four subspaces
-
-- Projection, projection, projection
-
-
+- Projection, projection, *projection*
 
 Additional topics 
 
 - Slight detour to probabilities: Joint, conditional, marginal and Bayes formula. Markov chain, eigenvalue, eigenvectors
 
 - Findings vector multiplication that looks like projection 
-  - projection, orthogonal matrix, spanning Space |
+  - projection, orthogonal matrix, spanning Space 
 
 -Change of basis and solving systems of equations 
   - matrix decomposition 
 
-- More on eignevalue, eigenvector, 
-  - Markov chain
-    - irreducible, reduccible, ergodic, regular, absorbing MC. 
-    
+- More on eignevalue, eigenvector, and Markov Chain
+  
 - PSD, PD, ID, NSD, ND, Condition number, symmetric matrix, gram matrix, diagonailzable matrix |
 
 - Singular value decomposition
@@ -87,6 +95,39 @@ $$\mathbb{A}\cdot \vec{x} = \vec{b}$$
 $$\vec{v}$$
 
 $$\mathbb{A}$$
+$$\mathbb{A}: R^5 \rightarrow R^3$$
+
+### Probability measure
+
+- Similar notations (see page 5 and 6 of FOAS)
+  - Sample Space, $\Omega$  (i.e.,coin H,T)
+  - Event Space, $S$ (chance of getting H, chance of getting T, chance of getting H and T)
+  - Probability Measure $P$
+
+$$P: S \rightarrow \mathbb{R}$$ 
+- $P$ is probability measure that assigns probability every event in event space. 
+
+### Random variable
+
+- See page 16
+
+$$X: \Omega \rightarrow \mathbb{R} $$
+$$X: \text{{H,T}} \rightarrow \text{{0,1}} $$
+
+### Other similar types
+
+- Operator (example, $E[X]$)
+  - Operator $E$ on random variable $X$, $E[X]$, maps entire sample space of X to a real number.
+  
+- Statistic $\bar{X}$
+  - Maps sample to a number
+  - Estimator (is this a random variable? yes, it is)
+  
+- Matrix and vector multiplication
+  - Maps the vector to another vector 
+
+- Norm
+
 
 ## vectors
 
@@ -237,12 +278,7 @@ X <- cbind(1,hprice1$bdrms)
 P <- inv((t(X)%*%X))%*%t(X)
 b_hat <- P%*%hprice1$price
 
-
-diag(88)
-
 ```
-
-
 
 ## C and P 
 
