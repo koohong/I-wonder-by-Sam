@@ -27,6 +27,8 @@ library(here)
 
 - Install R/RStudio and LaTex [LINK](https://bookdown.org/yihui/rmarkdown-cookbook/install-latex.html)
 
+- Use `github desktop`
+
 - MIDS FOR LIFE [LINK](https://learn.berkeley.edu/courses/395)
 
 ## Recommended books
