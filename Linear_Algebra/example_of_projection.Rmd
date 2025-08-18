@@ -39,8 +39,10 @@ mod1 <- lm(price ~ lotsize + colonial, data =df)
 
 summary(mod1)
 
-temp <- df[,c(4,6)]
-A <- as.matrix(cbind(1,temp))
+temp <- df
+head(df)
+A <- as.matrix(cbind(1,temp[,c(4,6)]))
+head(A)
 Rank(A)
 
 G <- t(A)%*%A
