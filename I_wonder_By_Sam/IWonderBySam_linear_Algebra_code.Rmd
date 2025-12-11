@@ -1071,13 +1071,13 @@ Rank(A)
 GA <- t(A)%*%A
 print(GA)
 
-L <- round(diag(eigen(GA)$values,3),1)
+L <- round(diag(eigen(GA)$values,3),2)
 print(L)
 
 E <- round(eigen(GA)$vectors,3)
 E
 
-t(E)
+round(t(E),3)
 
 round(inv(E),3)
 ```
@@ -1097,15 +1097,15 @@ Rank(A)
 GA <- t(A)%*%A
 print(GA)
 
-L <- round(diag(eigen(GA)$values,2),1)
+L <- round(diag(eigen(GA)$values,3),1)
 print(L)
 
 E <- round(eigen(GA)$vectors,3)
 E
 
-round(t(E),2)
+round(t(E),3)
 
-round(inv(E),2)
+round(inv(E),3)
 ```
 
 ## Section 5.6
